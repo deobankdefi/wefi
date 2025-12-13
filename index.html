@@ -1561,38 +1561,18 @@
             let currentPlatform = null;
             let currentVideoId = null;
             const videoModal = document.getElementById('videoModal');
-            const vimeoIframe = document.getElementById('vimeoPlayer');
+            const videoIframe = document.getElementById('vimeoPlayer');
             
             // YouTube API Ready Flag
             let youtubeAPIReady = false;
             
             // YouTube API ready callback (called automatically by YouTube)
             window.onYouTubeIframeAPIReady = function() {
+                console.log('YouTube API Ready');
                 youtubeAPIReady = true;
             };
             
-            // Wait for YouTube API to be available
-            function waitForYouTube(maxAttempts = 30, attemptDelay = 100) {
-                return new Promise((resolve, reject) => {
-                    let attempts = 0;
-                    
-                    const checkYouTube = () => {
-                        attempts++;
-                        
-                        if (window.YT && window.YT.Player && youtubeAPIReady) {
-                            resolve();
-                        } else if (attempts >= maxAttempts) {
-                            reject(new Error('YouTube API did not load in time'));
-                        } else {
-                            setTimeout(checkYouTube, attemptDelay);
-                        }
-                    };
-                    
-                    checkYouTube();
-                });
-            }
-            
-            // Wait for Vimeo API to be available with retry logic
+            // Wait for Vimeo API to be available
             function waitForVimeo(maxAttempts = 20, attemptDelay = 100) {
                 return new Promise((resolve, reject) => {
                     let attempts = 0;
@@ -1601,6 +1581,7 @@
                         attempts++;
                         
                         if (window.Vimeo && window.Vimeo.Player) {
+                            console.log('Vimeo API Ready');
                             resolve();
                         } else if (attempts >= maxAttempts) {
                             reject(new Error('Vimeo API did not load in time'));
@@ -1616,56 +1597,47 @@
             // Initialize Vimeo Player
             async function initVimeoPlayer(videoId) {
                 try {
+                    console.log('Initializing Vimeo player for video:', videoId);
+                    
                     // Show loading indicator
                     const loadingElement = document.getElementById('videoLoading');
                     if (loadingElement) {
                         loadingElement.classList.remove('hidden');
                     }
                     
-                    // Wait for Vimeo API to be available (max 2 seconds)
+                    // Wait for Vimeo API
                     await waitForVimeo();
                     
-                    // Configure Vimeo embed URL with all distractions hidden
-                    const vimeoUrl = `https://player.vimeo.com/video/${videoId}?` + new URLSearchParams({
-                        autoplay: 1,
-                        autopause: 0,
-                        muted: 0,
-                        controls: 1,
-                        title: 0,           // Hide title
-                        byline: 0,          // Hide author
-                        portrait: 0,        // Hide author portrait
-                        speed: 0,           // Hide speed controls
-                        pip: 0,             // Disable picture-in-picture
-                        transparent: 0,
-                        background: 0,
-                        color: 'C7F160',    // WeFi lime green for progress bar
-                        quality: 'auto'
-                    }).toString();
+                    // Configure Vimeo embed URL
+                    const vimeoUrl = `https://player.vimeo.com/video/${videoId}?autoplay=1&autopause=0&muted=0&controls=1&title=0&byline=0&portrait=0&speed=0&pip=0&color=C7F160`;
                     
-                    vimeoIframe.src = vimeoUrl;
+                    videoIframe.src = vimeoUrl;
                     
-                    // Wait a moment for iframe to be ready
-                    await new Promise(resolve => setTimeout(resolve, 300));
+                    // Wait for iframe to load
+                    await new Promise(resolve => setTimeout(resolve, 500));
                     
                     // Initialize Vimeo Player API
-                    vimeoPlayer = new Vimeo.Player(vimeoIframe);
+                    vimeoPlayer = new Vimeo.Player(videoIframe);
                     
-                    // Hide loading indicator when video starts playing
+                    // Hide loading when playing
                     vimeoPlayer.on('play', function() {
+                        console.log('Vimeo video playing');
                         if (loadingElement) {
                             loadingElement.classList.add('hidden');
                         }
                     });
                     
-                    // Also hide loading indicator when video is loaded and ready
+                    // Hide loading when loaded
                     vimeoPlayer.on('loaded', function() {
+                        console.log('Vimeo video loaded');
                         if (loadingElement) {
                             loadingElement.classList.add('hidden');
                         }
                     });
                     
-                    // Auto-close modal when video ends
+                    // Auto-close when ended
                     vimeoPlayer.on('ended', function() {
+                        console.log('Vimeo video ended');
                         setTimeout(closeVideoModal, 500);
                     });
                     
@@ -1673,118 +1645,119 @@
                 } catch (error) {
                     console.error('Error initializing Vimeo player:', error);
                     
-                    // Hide loading indicator on error
                     const loadingElement = document.getElementById('videoLoading');
                     if (loadingElement) {
                         loadingElement.classList.add('hidden');
                     }
                     
-                    // Fallback: Open video directly on Vimeo in new tab
-                    const fallbackUrl = `https://vimeo.com/${videoId}`;
-                    
-                    if (confirm('Unable to load video player. Would you like to watch the video on Vimeo instead?')) {
-                        window.open(fallbackUrl, '_blank');
-                    }
-                    
+                    alert('Unable to load video. Please try again or refresh the page.');
                     closeVideoModal();
                     return false;
                 }
             }
             
-            // Initialize YouTube Player with IFrame API
-            async function initYouTubePlayer(videoId) {
-                try {
-                    // Show loading indicator
-                    const loadingElement = document.getElementById('videoLoading');
-                    if (loadingElement) {
-                        loadingElement.classList.remove('hidden');
-                    }
-                    
-                    // Wait for YouTube API to be available (max 3 seconds)
-                    await waitForYouTube();
-                    
-                    // Set iframe ID for YouTube API
-                    vimeoIframe.id = 'youtubePlayerIframe';
-                    
-                    // Destroy existing YouTube player if any
-                    if (youtubePlayer) {
-                        try {
-                            youtubePlayer.destroy();
-                        } catch (e) {
-                            console.log('Error destroying previous player:', e);
-                        }
-                        youtubePlayer = null;
-                    }
-                    
-                    // Clear iframe src first
-                    vimeoIframe.src = '';
-                    
-                    // Wait a moment
-                    await new Promise(resolve => setTimeout(resolve, 100));
-                    
-                    // Initialize YouTube Player with IFrame API
-                    youtubePlayer = new YT.Player('youtubePlayerIframe', {
-                        videoId: videoId,
-                        playerVars: {
-                            autoplay: 1,
-                            rel: 0,              // Don't show related videos
-                            modestbranding: 1,   // Minimal YouTube branding
-                            controls: 1,         // Show player controls
-                            showinfo: 0,         // Hide video info
-                            fs: 1,               // Allow fullscreen
-                            iv_load_policy: 3,   // Hide annotations
-                            color: 'white',      // Progress bar color
-                            enablejsapi: 1       // Enable JavaScript API
-                        },
-                        events: {
-                            'onReady': function(event) {
-                                // Hide loading when ready
-                                if (loadingElement) {
-                                    loadingElement.classList.add('hidden');
-                                }
-                                // Auto-play
-                                event.target.playVideo();
-                            },
-                            'onStateChange': function(event) {
-                                // Auto-close when video ends
-                                if (event.data === YT.PlayerState.ENDED) {
-                                    setTimeout(closeVideoModal, 500);
-                                }
-                                // Hide loading when playing
-                                if (event.data === YT.PlayerState.PLAYING) {
-                                    if (loadingElement) {
-                                        loadingElement.classList.add('hidden');
+            // Initialize YouTube Player  
+            function initYouTubePlayer(videoId) {
+                return new Promise((resolve, reject) => {
+                    try {
+                        console.log('Initializing YouTube player for video:', videoId);
+                        
+                        const loadingElement = document.getElementById('videoLoading');
+                        
+                        // Create container div for YouTube player
+                        const playerDiv = document.createElement('div');
+                        playerDiv.id = 'youtube-player-' + Date.now();
+                        playerDiv.style.width = '100%';
+                        playerDiv.style.height = '100%';
+                        playerDiv.style.position = 'absolute';
+                        playerDiv.style.top = '0';
+                        playerDiv.style.left = '0';
+                        
+                        // Clear iframe and add player div
+                        videoIframe.style.display = 'none';
+                        videoIframe.parentElement.appendChild(playerDiv);
+                        
+                        // Check if YouTube API is ready
+                        const initPlayer = () => {
+                            if (!window.YT || !window.YT.Player || !youtubeAPIReady) {
+                                console.log('Waiting for YouTube API...');
+                                setTimeout(initPlayer, 100);
+                                return;
+                            }
+                            
+                            console.log('Creating YouTube player...');
+                            
+                            // Create YouTube player
+                            youtubePlayer = new YT.Player(playerDiv.id, {
+                                videoId: videoId,
+                                width: '100%',
+                                height: '100%',
+                                playerVars: {
+                                    autoplay: 1,
+                                    rel: 0,
+                                    modestbranding: 1,
+                                    controls: 1,
+                                    showinfo: 0,
+                                    fs: 1,
+                                    iv_load_policy: 3,
+                                    color: 'white'
+                                },
+                                events: {
+                                    onReady: function(event) {
+                                        console.log('YouTube player ready');
+                                        if (loadingElement) {
+                                            loadingElement.classList.add('hidden');
+                                        }
+                                        event.target.playVideo();
+                                        resolve(true);
+                                    },
+                                    onStateChange: function(event) {
+                                        // Hide loading when playing
+                                        if (event.data === YT.PlayerState.PLAYING) {
+                                            console.log('YouTube video playing');
+                                            if (loadingElement) {
+                                                loadingElement.classList.add('hidden');
+                                            }
+                                        }
+                                        // Auto-close when ended
+                                        if (event.data === YT.PlayerState.ENDED) {
+                                            console.log('YouTube video ended');
+                                            setTimeout(closeVideoModal, 500);
+                                        }
+                                    },
+                                    onError: function(event) {
+                                        console.error('YouTube player error:', event);
+                                        if (loadingElement) {
+                                            loadingElement.classList.add('hidden');
+                                        }
+                                        alert('Unable to load YouTube video. Please try again.');
+                                        closeVideoModal();
+                                        reject(event);
                                     }
                                 }
-                            }
+                            });
+                        };
+                        
+                        initPlayer();
+                        
+                    } catch (error) {
+                        console.error('Error initializing YouTube player:', error);
+                        const loadingElement = document.getElementById('videoLoading');
+                        if (loadingElement) {
+                            loadingElement.classList.add('hidden');
                         }
-                    });
-                    
-                    return true;
-                } catch (error) {
-                    console.error('Error initializing YouTube player:', error);
-                    
-                    // Hide loading indicator on error
-                    const loadingElement = document.getElementById('videoLoading');
-                    if (loadingElement) {
-                        loadingElement.classList.add('hidden');
+                        alert('Unable to load YouTube video. Please refresh the page and try again.');
+                        closeVideoModal();
+                        reject(error);
                     }
-                    
-                    // Fallback: Open video directly on YouTube in new tab
-                    const fallbackUrl = `https://www.youtube.com/watch?v=${videoId}`;
-                    
-                    if (confirm('Unable to load video player. Would you like to watch the video on YouTube instead?')) {
-                        window.open(fallbackUrl, '_blank');
-                    }
-                    
-                    closeVideoModal();
-                    return false;
-                }
+                });
             }
             
             // Open Video Modal
             window.openVideoModal = async function(event, platform = 'vimeo', videoId = '1145731075') {
                 if (event) event.preventDefault();
+                
+                console.log('Opening video modal:', platform, videoId);
                 
                 // Show loading indicator
                 const loadingElement = document.getElementById('videoLoading');
@@ -1802,85 +1775,70 @@
                 currentPlatform = platform;
                 currentVideoId = videoId;
                 
+                // Small delay for modal animation
+                await new Promise(resolve => setTimeout(resolve, 100));
+                
                 // Initialize appropriate player
                 if (platform === 'vimeo') {
-                    // Reset Vimeo player if switching videos or first time
-                    if (!vimeoPlayer || vimeoPlayer._videoId !== videoId) {
-                        vimeoPlayer = null;
-                        const success = await initVimeoPlayer(videoId);
-                        if (!success) {
-                            return; // Fallback already handled
-                        }
-                    } else {
-                        // Same Vimeo video, just replay
-                        try {
-                            await vimeoPlayer.setCurrentTime(0);
-                            await vimeoPlayer.play();
-                        } catch (error) {
-                            console.error('Error playing video:', error);
-                            vimeoPlayer = null;
-                            await initVimeoPlayer(videoId);
-                        }
-                    }
+                    vimeoPlayer = null;
+                    await initVimeoPlayer(videoId);
                 } else if (platform === 'youtube') {
-                    // Always reload YouTube player for clean experience and proper event binding
-                    const success = await initYouTubePlayer(videoId);
-                    if (!success) {
-                        return; // Fallback already handled
-                    }
+                    youtubePlayer = null;
+                    await initYouTubePlayer(videoId);
                 }
             };
             
             // Close Video Modal
             window.closeVideoModal = function() {
+                console.log('Closing video modal');
+                
                 // Add closing animation class
                 videoModal.classList.add('closing');
                 
                 // Stop videos
-                if (currentPlatform === 'vimeo' && vimeoPlayer) {
+                if (vimeoPlayer) {
                     try {
                         vimeoPlayer.pause();
+                        vimeoPlayer.destroy();
                     } catch (error) {
-                        console.error('Error pausing Vimeo video:', error);
+                        console.error('Error stopping Vimeo:', error);
                     }
-                } else if (currentPlatform === 'youtube' && youtubePlayer) {
-                    try {
-                        youtubePlayer.stopVideo();
-                    } catch (error) {
-                        console.error('Error stopping YouTube video:', error);
-                    }
+                    vimeoPlayer = null;
                 }
                 
-                // Wait for animation to complete before hiding
+                if (youtubePlayer) {
+                    try {
+                        youtubePlayer.stopVideo();
+                        youtubePlayer.destroy();
+                    } catch (error) {
+                        console.error('Error stopping YouTube:', error);
+                    }
+                    youtubePlayer = null;
+                }
+                
+                // Wait for animation to complete
                 setTimeout(function() {
                     videoModal.classList.remove('active');
                     videoModal.classList.remove('closing');
                     
-                    // Destroy YouTube player to fully stop playback
-                    if (youtubePlayer) {
-                        try {
-                            youtubePlayer.destroy();
-                        } catch (error) {
-                            console.error('Error destroying YouTube player:', error);
-                        }
-                        youtubePlayer = null;
-                    }
+                    // Clean up iframe and any player divs
+                    videoIframe.src = '';
+                    videoIframe.style.display = '';
                     
-                    // Clear iframe completely
-                    vimeoIframe.src = '';
-                    vimeoIframe.id = 'vimeoPlayer';
+                    // Remove any YouTube player divs
+                    const playerDivs = videoIframe.parentElement.querySelectorAll('[id^="youtube-player-"]');
+                    playerDivs.forEach(div => div.remove());
                     
                     // Re-enable body scrolling
                     document.body.classList.remove('modal-open');
                     
-                    // Reset loading indicator for next time
+                    // Reset loading indicator
                     const loadingElement = document.getElementById('videoLoading');
                     if (loadingElement) {
                         loadingElement.classList.remove('hidden');
                     }
                     
-                    // Reset player references
-                    vimeoPlayer = null;
+                    // Reset references
                     currentPlatform = null;
                     currentVideoId = null;
                 }, 400);
