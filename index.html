@@ -419,6 +419,26 @@
             box-shadow: 0 15px 40px rgba(0, 255, 136, 0.2);
         }
         
+        /* Highlight effect when scrolling back to card after video */
+        .feature-card.scroll-highlight {
+            animation: cardHighlight 2s ease-out;
+        }
+        
+        @keyframes cardHighlight {
+            0% {
+                box-shadow: 0 0 0 0 rgba(199, 241, 96, 0);
+                border-color: rgba(199, 241, 96, 0.2);
+            }
+            10% {
+                box-shadow: 0 0 30px 10px rgba(199, 241, 96, 0.6);
+                border-color: rgba(199, 241, 96, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(199, 241, 96, 0);
+                border-color: rgba(199, 241, 96, 0.2);
+            }
+        }
+        
         .feature-card:hover::before {
             transform: scaleX(1);
         }
@@ -1845,8 +1865,35 @@
             window.openVideoModal = async function(event, platform = 'vimeo', videoId = '1145731075') {
                 if (event) {
                     event.preventDefault();
-                    // Store the element that triggered the video
-                    videoTriggerElement = event.target.closest('.feature-card') || event.target;
+                    
+                    // CRITICAL: Find and store the parent feature card with better fallback
+                    const clickedElement = event.currentTarget || event.target;
+                    
+                    // Try multiple methods to find the card
+                    videoTriggerElement = clickedElement.closest('.feature-card');
+                    
+                    // Fallback: if closest doesn't work, try finding by traversing up
+                    if (!videoTriggerElement) {
+                        let parent = clickedElement.parentElement;
+                        while (parent && !parent.classList.contains('feature-card')) {
+                            parent = parent.parentElement;
+                        }
+                        videoTriggerElement = parent;
+                    }
+                    
+                    // Fallback: if still not found, find by section
+                    if (!videoTriggerElement) {
+                        // Find the section this video is in
+                        const allCards = document.querySelectorAll('.feature-card');
+                        allCards.forEach(card => {
+                            if (card.contains(clickedElement)) {
+                                videoTriggerElement = card;
+                            }
+                        });
+                    }
+                    
+                    console.log('Video trigger element:', videoTriggerElement);
+                    console.log('Video trigger element class:', videoTriggerElement ? videoTriggerElement.className : 'NOT FOUND');
                 }
                 
                 console.log('Opening video modal:', platform, videoId);
@@ -1883,6 +1930,7 @@
             // Close Video Modal
             window.closeVideoModal = function() {
                 console.log('Closing video modal');
+                console.log('Will scroll back to:', videoTriggerElement);
                 
                 // Add closing animation class
                 videoModal.classList.add('closing');
@@ -1921,7 +1969,7 @@
                     const playerDivs = videoIframe.parentElement.querySelectorAll('[id^="youtube-player-"]');
                     playerDivs.forEach(div => div.remove());
                     
-                    // Re-enable body scrolling
+                    // Re-enable body scrolling FIRST (critical for scroll to work)
                     document.body.classList.remove('modal-open');
                     
                     // Reset loading indicator
@@ -1930,20 +1978,44 @@
                         loadingElement.classList.remove('hidden');
                     }
                     
-                    // Scroll back to the video trigger element
-                    if (videoTriggerElement) {
-                        setTimeout(function() {
-                            videoTriggerElement.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'center'
+                    // CRITICAL: Scroll back to the video trigger element
+                    // Wait for body to be scrollable again
+                    setTimeout(function() {
+                        if (videoTriggerElement) {
+                            console.log('Scrolling back to video section...');
+                            console.log('Element to scroll to:', videoTriggerElement);
+                            
+                            // Add highlight effect
+                            videoTriggerElement.classList.add('scroll-highlight');
+                            
+                            // Remove highlight after animation
+                            setTimeout(function() {
+                                videoTriggerElement.classList.remove('scroll-highlight');
+                            }, 2000);
+                            
+                            // Get the position of the element
+                            const elementPosition = videoTriggerElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - 100; // 100px above the element
+                            
+                            // Smooth scroll to position
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
                             });
-                        }, 100);
-                    }
-                    
-                    // Reset references
-                    currentPlatform = null;
-                    currentVideoId = null;
-                    videoTriggerElement = null;
+                            
+                            console.log('✓ Scrolled back to position:', offsetPosition);
+                            console.log('✓ Element should now be visible with highlight effect');
+                        } else {
+                            console.warn('⚠ No video trigger element found - cannot scroll back');
+                        }
+                        
+                        // Reset references after scroll completes
+                        setTimeout(function() {
+                            currentPlatform = null;
+                            currentVideoId = null;
+                            videoTriggerElement = null;
+                        }, 1000);
+                    }, 200); // Wait 200ms for body scrolling to be re-enabled
                 }, 400);
             };
             
