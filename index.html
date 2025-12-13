@@ -831,9 +831,200 @@
             .section-title {
                 text-rendering: optimizeLegibility;
             }
+            
+            .video-modal {
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .video-wrapper iframe {
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+            }
         }
         
-        /* ===== UTILITY CLASSES ===== */
+        /* Prevent video modal scroll issues on mobile */
+        body.modal-open {
+            position: fixed;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        /* ===== VIDEO MODAL ===== */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .video-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(30, 30, 30, 0.95));
+            border-radius: 20px;
+            padding: 8px;
+            box-shadow: 
+                0 25px 80px rgba(0, 255, 136, 0.3),
+                0 0 0 1px rgba(199, 241, 96, 0.3),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .video-modal.active .video-container {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .video-modal.closing .video-container {
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.6, 0.04, 0.98, 0.34);
+        }
+        
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            background: #000;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .video-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(199, 241, 96, 0.1) 0%, 
+                transparent 50%, 
+                rgba(0, 255, 136, 0.1) 100%);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.3;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 16px;
+        }
+        
+        .video-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: rgba(199, 241, 96, 0.1);
+            border: 2px solid var(--lime-green);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+        
+        .video-close:hover {
+            background: var(--lime-green);
+            color: var(--black);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 5px 20px rgba(199, 241, 96, 0.4);
+        }
+        
+        /* Video loading state */
+        .video-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+        
+        .video-loading::after {
+            content: '';
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(199, 241, 96, 0.2);
+            border-top-color: var(--lime-green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Mobile responsive video modal */
+        @media (max-width: 768px) {
+            .video-container {
+                width: 95%;
+                padding: 6px;
+                border-radius: 16px;
+            }
+            
+            .video-wrapper {
+                border-radius: 12px;
+            }
+            
+            .video-close {
+                top: -45px;
+                width: 36px;
+                height: 36px;
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .video-container {
+                width: 98%;
+                padding: 4px;
+                border-radius: 12px;
+            }
+            
+            .video-wrapper {
+                border-radius: 10px;
+            }
+            
+            .video-close {
+                top: -40px;
+                width: 32px;
+                height: 32px;
+                font-size: 18px;
+            }
+        }
+        
+        /* Utility Classes */
         .text-center {
             text-align: center;
         }
@@ -860,6 +1051,23 @@
     </style>
 </head>
 <body>
+    <!-- VIDEO MODAL -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-container">
+            <div class="video-close" onclick="closeVideoModal()">×</div>
+            <div class="video-wrapper">
+                <div class="video-loading"></div>
+                <iframe 
+                    id="vimeoPlayer"
+                    src=""
+                    frameborder="0"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+            </div>
+        </div>
+    </div>
+
     <!-- NAVIGATION -->
     <nav class="navbar">
         <div class="nav-container">
@@ -937,7 +1145,7 @@
                         <li>Automated WFI token mining for 8 years</li>
                         <li>Multiple income streams: mining, staking, referrals</li>
                     </ul>
-                    <a href="#wfi-token" class="feature-cta">Explore WFI Token Economics →</a>
+                    <a href="#" class="feature-cta" onclick="openVideoModal(event)">▶ Watch WeFi Introduction (10 min) →</a>
                 </div>
 
                 <div class="feature-card fade-in-on-scroll">
@@ -1265,82 +1473,239 @@
 
     <!-- JavaScript -->
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Navbar scroll effect
-        const navbar = document.querySelector('.navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const isActive = question.classList.contains('active');
-                
-                // Close all other FAQs
-                document.querySelectorAll('.faq-question').forEach(q => {
-                    q.classList.remove('active');
-                    q.nextElementSibling.classList.remove('active');
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Video Modal Functionality
+            let vimeoPlayer = null;
+            let vimeoAPILoaded = false;
+            const videoModal = document.getElementById('videoModal');
+            const vimeoIframe = document.getElementById('vimeoPlayer');
+            
+            // Load Vimeo Player API dynamically
+            function loadVimeoAPI() {
+                return new Promise((resolve, reject) => {
+                    if (window.Vimeo) {
+                        vimeoAPILoaded = true;
+                        resolve();
+                        return;
+                    }
+                    
+                    const script = document.createElement('script');
+                    script.src = 'https://player.vimeo.com/api/player.js';
+                    script.onload = () => {
+                        vimeoAPILoaded = true;
+                        resolve();
+                    };
+                    script.onerror = () => reject(new Error('Failed to load Vimeo API'));
+                    document.head.appendChild(script);
                 });
-                
-                // Toggle current FAQ
-                if (!isActive) {
-                    question.classList.add('active');
-                    answer.classList.add('active');
-                }
-            });
-        });
-
-        // Scroll Animation Observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in-on-scroll').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+            }
+            
+            // Initialize Vimeo Player when needed
+            async function initVimeoPlayer() {
+                try {
+                    // Ensure Vimeo API is loaded
+                    if (!window.Vimeo) {
+                        await loadVimeoAPI();
+                    }
+                    
+                    const vimeoVideoId = '1145731075';
+                    
+                    // Configure Vimeo embed URL with all distractions hidden
+                    const vimeoUrl = `https://player.vimeo.com/video/${vimeoVideoId}?` + new URLSearchParams({
+                        autoplay: 1,
+                        autopause: 0,
+                        muted: 0,
+                        controls: 1,
+                        title: 0,           // Hide title
+                        byline: 0,          // Hide author
+                        portrait: 0,        // Hide author portrait
+                        speed: 0,           // Hide speed controls
+                        pip: 0,             // Disable picture-in-picture
+                        transparent: 0,
+                        background: 0,
+                        color: 'C7F160',    // WeFi lime green for progress bar
+                        quality: 'auto'
+                    }).toString();
+                    
+                    vimeoIframe.src = vimeoUrl;
+                    
+                    // Wait a moment for iframe to be ready
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    
+                    // Initialize Vimeo Player API
+                    vimeoPlayer = new Vimeo.Player(vimeoIframe);
+                    
+                    // Auto-close modal when video ends
+                    vimeoPlayer.on('ended', function() {
+                        setTimeout(closeVideoModal, 500); // Small delay before closing
                     });
+                    
+                    // Remove loading indicator when video is ready
+                    vimeoPlayer.on('loaded', function() {
+                        const loadingElement = document.querySelector('.video-loading');
+                        if (loadingElement) {
+                            loadingElement.style.display = 'none';
+                        }
+                    });
+                } catch (error) {
+                    console.error('Error initializing Vimeo player:', error);
+                    alert('Sorry, there was an error loading the video. Please refresh the page and try again.');
+                }
+            }
+            
+            // Open Video Modal
+            window.openVideoModal = async function(event) {
+                if (event) event.preventDefault();
+                
+                // Prevent body scrolling
+                document.body.classList.add('modal-open');
+                
+                // Show modal
+                videoModal.classList.add('active');
+                
+                // Initialize player if not already done
+                if (!vimeoPlayer) {
+                    await initVimeoPlayer();
+                } else {
+                    // Reset video to beginning and play
+                    try {
+                        await vimeoPlayer.setCurrentTime(0);
+                        await vimeoPlayer.play();
+                    } catch (error) {
+                        console.error('Error playing video:', error);
+                    }
+                }
+            };
+            
+            // Close Video Modal
+            window.closeVideoModal = function() {
+                // Add closing animation class
+                videoModal.classList.add('closing');
+                
+                // Pause video
+                if (vimeoPlayer) {
+                    try {
+                        vimeoPlayer.pause();
+                    } catch (error) {
+                        console.error('Error pausing video:', error);
+                    }
+                }
+                
+                // Wait for animation to complete before hiding
+                setTimeout(function() {
+                    videoModal.classList.remove('active');
+                    videoModal.classList.remove('closing');
+                    
+                    // Re-enable body scrolling
+                    document.body.classList.remove('modal-open');
+                }, 400);
+            };
+            
+            // Close modal when clicking outside video container
+            if (videoModal) {
+                videoModal.addEventListener('click', function(e) {
+                    if (e.target === videoModal) {
+                        closeVideoModal();
+                    }
+                });
+            }
+            
+            // Close modal with ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && videoModal && videoModal.classList.contains('active')) {
+                    closeVideoModal();
                 }
             });
-        });
+            
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (mobileMenuBtn && navMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                });
+
+                // Close mobile menu when clicking a link
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('active');
+                    });
+                });
+            }
+
+            // Navbar scroll effect
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                });
+            }
+
+            // FAQ Accordion
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const isActive = question.classList.contains('active');
+                    
+                    // Close all other FAQs
+                    document.querySelectorAll('.faq-question').forEach(q => {
+                        q.classList.remove('active');
+                        q.nextElementSibling.classList.remove('active');
+                    });
+                    
+                    // Toggle current FAQ
+                    if (!isActive) {
+                        question.classList.add('active');
+                        answer.classList.add('active');
+                    }
+                });
+            });
+
+            // Scroll Animation Observer
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    
+                    // Skip if href is just '#' or if it has onclick handler
+                    if (!href || href === '#' || this.hasAttribute('onclick')) {
+                        return;
+                    }
+                    
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }); // End of DOMContentLoaded
     </script>
 </body>
 </html>
