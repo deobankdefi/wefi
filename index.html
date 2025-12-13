@@ -855,6 +855,70 @@
             overflow: hidden;
         }
         
+        /* ===== SCROLL TO TOP BUTTON ===== */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--lime-green), var(--bright-green));
+            color: var(--black);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
+            transition: all 0.3s ease;
+            z-index: 9999;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        
+        .scroll-to-top.visible {
+            display: flex;
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .scroll-to-top:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 255, 136, 0.6);
+        }
+        
+        .scroll-to-top:active {
+            transform: scale(0.95);
+        }
+        
+        .scroll-arrow {
+            position: relative;
+            z-index: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 22px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .scroll-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+        }
+        
         /* ===== VIDEO MODAL ===== */
         .video-modal {
             display: none;
@@ -1148,6 +1212,11 @@
         </div>
     </div>
 
+    <!-- SCROLL TO TOP BUTTON -->
+    <button id="scrollToTopBtn" class="scroll-to-top" onclick="scrollToTop()" title="Back to top">
+        <span class="scroll-arrow">↑</span>
+    </button>
+
     <!-- NAVIGATION -->
     <nav class="navbar">
         <div class="nav-container">
@@ -1211,7 +1280,7 @@
                         <li>Self-custody wallets: your keys, your crypto</li>
                         <li>AI-powered compliance for maximum security</li>
                     </ul>
-                    <a href="#" class="feature-cta" onclick="openVideoModal(event, 'youtube', 'JMPGNho-jX0')">DISCOVER THE WEFI ADVANTAGE →</a>
+                    <a href="#" class="feature-cta" onclick="openVideoModal(event, 'youtube', 'JMPGNho-jX0')">WEFI EXPLAINED IN 1 MINUTE</a>
                 </div>
 
                 <div class="feature-card fade-in-on-scroll">
@@ -1239,7 +1308,7 @@
                         <li>Guinness World Record for blockchain livestream</li>
                         <li>Digital Bank of the Year 2025</li>
                     </ul>
-                    <a href="#" class="feature-cta" onclick="openVideoModal(event, 'youtube', 'WGkCV94z9Ao')">MEET THE LEADERSHIP TEAM →</a></a>
+                    <a href="#" class="feature-cta" onclick="openVideoModal(event, 'youtube', 'WGkCV94z9Ao')">MEET THE WEFI TEAM</a>
                 </div>
             </div>
 
@@ -1560,8 +1629,10 @@
             let youtubePlayer = null;
             let currentPlatform = null;
             let currentVideoId = null;
+            let videoTriggerElement = null; // Track which element opened the video
             const videoModal = document.getElementById('videoModal');
             const videoIframe = document.getElementById('vimeoPlayer');
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
             
             // YouTube API Ready Flag
             let youtubeAPIReady = false;
@@ -1570,6 +1641,23 @@
             window.onYouTubeIframeAPIReady = function() {
                 console.log('YouTube API Ready');
                 youtubeAPIReady = true;
+            };
+            
+            // Scroll to Top Button Functionality
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+            
+            // Scroll to Top Function
+            window.scrollToTop = function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             };
             
             // Wait for Vimeo API to be available
@@ -1755,7 +1843,11 @@
             
             // Open Video Modal
             window.openVideoModal = async function(event, platform = 'vimeo', videoId = '1145731075') {
-                if (event) event.preventDefault();
+                if (event) {
+                    event.preventDefault();
+                    // Store the element that triggered the video
+                    videoTriggerElement = event.target.closest('.feature-card') || event.target;
+                }
                 
                 console.log('Opening video modal:', platform, videoId);
                 
@@ -1838,9 +1930,20 @@
                         loadingElement.classList.remove('hidden');
                     }
                     
+                    // Scroll back to the video trigger element
+                    if (videoTriggerElement) {
+                        setTimeout(function() {
+                            videoTriggerElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center'
+                            });
+                        }, 100);
+                    }
+                    
                     // Reset references
                     currentPlatform = null;
                     currentVideoId = null;
+                    videoTriggerElement = null;
                 }, 400);
             };
             
