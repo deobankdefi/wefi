@@ -25,6 +25,9 @@
     <!-- Vimeo Player API - Pre-loaded for reliability -->
     <script src="https://player.vimeo.com/api/player.js" async></script>
     
+    <!-- YouTube IFrame API - For auto-close detection -->
+    <script src="https://www.youtube.com/iframe_api" async></script>
+    
     <style>
         /* ===== CSS VARIABLES - WeFi Branding ===== */
         :root {
@@ -1554,10 +1557,40 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Video Modal Functionality
             let vimeoPlayer = null;
+            let youtubePlayer = null;
             let currentPlatform = null;
             let currentVideoId = null;
             const videoModal = document.getElementById('videoModal');
             const vimeoIframe = document.getElementById('vimeoPlayer');
+            
+            // YouTube API Ready Flag
+            let youtubeAPIReady = false;
+            
+            // YouTube API ready callback (called automatically by YouTube)
+            window.onYouTubeIframeAPIReady = function() {
+                youtubeAPIReady = true;
+            };
+            
+            // Wait for YouTube API to be available
+            function waitForYouTube(maxAttempts = 30, attemptDelay = 100) {
+                return new Promise((resolve, reject) => {
+                    let attempts = 0;
+                    
+                    const checkYouTube = () => {
+                        attempts++;
+                        
+                        if (window.YT && window.YT.Player && youtubeAPIReady) {
+                            resolve();
+                        } else if (attempts >= maxAttempts) {
+                            reject(new Error('YouTube API did not load in time'));
+                        } else {
+                            setTimeout(checkYouTube, attemptDelay);
+                        }
+                    };
+                    
+                    checkYouTube();
+                });
+            }
             
             // Wait for Vimeo API to be available with retry logic
             function waitForVimeo(maxAttempts = 20, attemptDelay = 100) {
@@ -1658,7 +1691,7 @@
                 }
             }
             
-            // Initialize YouTube Player
+            // Initialize YouTube Player with IFrame API
             async function initYouTubePlayer(videoId) {
                 try {
                     // Show loading indicator
@@ -1667,27 +1700,65 @@
                         loadingElement.classList.remove('hidden');
                     }
                     
-                    // Configure YouTube embed URL with minimal distractions
-                    const youtubeUrl = `https://www.youtube.com/embed/${videoId}?` + new URLSearchParams({
-                        autoplay: 1,
-                        rel: 0,              // Don't show related videos
-                        modestbranding: 1,   // Minimal YouTube branding
-                        controls: 1,         // Show player controls
-                        showinfo: 0,         // Hide video info
-                        fs: 1,               // Allow fullscreen
-                        iv_load_policy: 3,   // Hide annotations
-                        color: 'white',      // Progress bar color (white closest to lime)
-                        enablejsapi: 1       // Enable JavaScript API
-                    }).toString();
+                    // Wait for YouTube API to be available (max 3 seconds)
+                    await waitForYouTube();
                     
-                    vimeoIframe.src = youtubeUrl;
+                    // Set iframe ID for YouTube API
+                    vimeoIframe.id = 'youtubePlayerIframe';
                     
-                    // YouTube auto-hides loading after a moment
-                    setTimeout(function() {
-                        if (loadingElement) {
-                            loadingElement.classList.add('hidden');
+                    // Destroy existing YouTube player if any
+                    if (youtubePlayer) {
+                        try {
+                            youtubePlayer.destroy();
+                        } catch (e) {
+                            console.log('Error destroying previous player:', e);
                         }
-                    }, 2000);
+                        youtubePlayer = null;
+                    }
+                    
+                    // Clear iframe src first
+                    vimeoIframe.src = '';
+                    
+                    // Wait a moment
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    
+                    // Initialize YouTube Player with IFrame API
+                    youtubePlayer = new YT.Player('youtubePlayerIframe', {
+                        videoId: videoId,
+                        playerVars: {
+                            autoplay: 1,
+                            rel: 0,              // Don't show related videos
+                            modestbranding: 1,   // Minimal YouTube branding
+                            controls: 1,         // Show player controls
+                            showinfo: 0,         // Hide video info
+                            fs: 1,               // Allow fullscreen
+                            iv_load_policy: 3,   // Hide annotations
+                            color: 'white',      // Progress bar color
+                            enablejsapi: 1       // Enable JavaScript API
+                        },
+                        events: {
+                            'onReady': function(event) {
+                                // Hide loading when ready
+                                if (loadingElement) {
+                                    loadingElement.classList.add('hidden');
+                                }
+                                // Auto-play
+                                event.target.playVideo();
+                            },
+                            'onStateChange': function(event) {
+                                // Auto-close when video ends
+                                if (event.data === YT.PlayerState.ENDED) {
+                                    setTimeout(closeVideoModal, 500);
+                                }
+                                // Hide loading when playing
+                                if (event.data === YT.PlayerState.PLAYING) {
+                                    if (loadingElement) {
+                                        loadingElement.classList.add('hidden');
+                                    }
+                                }
+                            }
+                        }
+                    });
                     
                     return true;
                 } catch (error) {
@@ -1752,8 +1823,7 @@
                         }
                     }
                 } else if (platform === 'youtube') {
-                    // Always reload YouTube iframe for clean experience
-                    vimeoPlayer = null;
+                    // Always reload YouTube player for clean experience and proper event binding
                     const success = await initYouTubePlayer(videoId);
                     if (!success) {
                         return; // Fallback already handled
@@ -1766,12 +1836,18 @@
                 // Add closing animation class
                 videoModal.classList.add('closing');
                 
-                // Pause video (Vimeo only, YouTube handled by iframe removal)
-                if (vimeoPlayer && currentPlatform === 'vimeo') {
+                // Stop videos
+                if (currentPlatform === 'vimeo' && vimeoPlayer) {
                     try {
                         vimeoPlayer.pause();
                     } catch (error) {
-                        console.error('Error pausing video:', error);
+                        console.error('Error pausing Vimeo video:', error);
+                    }
+                } else if (currentPlatform === 'youtube' && youtubePlayer) {
+                    try {
+                        youtubePlayer.stopVideo();
+                    } catch (error) {
+                        console.error('Error stopping YouTube video:', error);
                     }
                 }
                 
@@ -1780,8 +1856,19 @@
                     videoModal.classList.remove('active');
                     videoModal.classList.remove('closing');
                     
-                    // Clear iframe to stop any playback
+                    // Destroy YouTube player to fully stop playback
+                    if (youtubePlayer) {
+                        try {
+                            youtubePlayer.destroy();
+                        } catch (error) {
+                            console.error('Error destroying YouTube player:', error);
+                        }
+                        youtubePlayer = null;
+                    }
+                    
+                    // Clear iframe completely
                     vimeoIframe.src = '';
+                    vimeoIframe.id = 'vimeoPlayer';
                     
                     // Re-enable body scrolling
                     document.body.classList.remove('modal-open');
@@ -1792,7 +1879,7 @@
                         loadingElement.classList.remove('hidden');
                     }
                     
-                    // Reset player reference
+                    // Reset player references
                     vimeoPlayer = null;
                     currentPlatform = null;
                     currentVideoId = null;
