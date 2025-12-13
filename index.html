@@ -571,6 +571,21 @@
             border-bottom: none;
         }
         
+        /* Mobile FAQ item spacing */
+        @media (max-width: 768px) {
+            .faq-item {
+                margin-bottom: 18px;
+                padding-bottom: 18px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .faq-item {
+                margin-bottom: 16px;
+                padding-bottom: 16px;
+            }
+        }
+        
         .faq-question {
             background: transparent;
             border: none;
@@ -586,6 +601,7 @@
             align-items: center;
             font-family: var(--font-primary);
             transition: color 0.3s ease;
+            line-height: 1.4;
         }
         
         .faq-question:hover {
@@ -597,6 +613,36 @@
             font-size: 24px;
             color: var(--lime-green);
             transition: transform 0.3s ease;
+            margin-left: 15px;
+            flex-shrink: 0; /* Prevents + from shrinking on mobile */
+        }
+        
+        /* Mobile FAQ question optimization */
+        @media (max-width: 768px) {
+            .faq-question {
+                font-size: 17px;
+                padding: 12px 0;
+                line-height: 1.5;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .faq-question {
+                font-size: 16px;
+                padding: 12px 0;
+                line-height: 1.5;
+            }
+            
+            .faq-question::after {
+                font-size: 22px;
+                margin-left: 12px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .faq-question {
+                font-size: 15px;
+            }
         }
         
         .faq-question.active::after {
@@ -606,14 +652,45 @@
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease;
+            transition: max-height 0.4s ease;
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.7;
+            font-size: 16px;
         }
         
         .faq-answer.active {
-            max-height: 200px;
+            max-height: 500px; /* Increased from 200px - ensures full answer displays on desktop */
             padding-top: 10px;
+            padding-bottom: 5px;
+        }
+        
+        /* Mobile-specific FAQ answer height */
+        @media (max-width: 768px) {
+            .faq-answer {
+                font-size: 15px;
+                line-height: 1.8; /* Better readability on mobile */
+            }
+            
+            .faq-answer.active {
+                max-height: 800px; /* Much larger for mobile text wrapping */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .faq-answer {
+                font-size: 14px;
+                line-height: 1.9; /* Extra spacing for small screens */
+            }
+            
+            .faq-answer.active {
+                max-height: 1000px; /* Generous height for small screens where text wraps most */
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .faq-answer.active {
+                max-height: 1200px; /* Maximum for very small screens */
+            }
         }
         
         .faq-cta {
