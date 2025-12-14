@@ -10,6 +10,11 @@
     <meta name="keywords" content="WeFi, Deobank, Reeve Collins, Tether, decentralized banking, DeFi, WFI token, blockchain banking, crypto banking">
     <meta name="author" content="DeobankDeFi">
     
+    <!-- Cache Control - Force Fresh Load -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="About WeFi - World's First Deobank">
     <meta property="og:description" content="Founded by Tether's co-founder Reeve Collins, WeFi is revolutionizing global finance with decentralized banking, AI compliance, and blockchain technology.">
@@ -1139,7 +1144,7 @@
                 
                 <!-- Video CTA -->
                 <div class="video-cta" style="text-align: center; margin-top: 40px;">
-                    <a href="#" id="videoButton" class="video-link" data-platform="vimeo" data-video-id="1145731075" style="display: inline-block; background: linear-gradient(135deg, var(--lime-green), var(--bright-green)); color: #000; padding: 18px 40px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 16px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(199, 241, 96, 0.3);">
+                    <a href="https://vimeo.com/1145731075" target="_blank" rel="noopener noreferrer" class="video-link" style="display: inline-block; background: linear-gradient(135deg, var(--lime-green), var(--bright-green)); color: #000; padding: 18px 40px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 16px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(199, 241, 96, 0.3);">
                         ▶️ WATCH WEFI INTRO VIDEO (10 MIN) →
                     </a>
                 </div>
@@ -1582,6 +1587,10 @@
 
     <!-- JAVASCRIPT -->
     <script>
+        // ===== SCRIPT VERSION: FIXED-EVENT-LISTENERS-V3 =====
+        // This version uses event listeners only - NO inline onclick handlers
+        console.log('✅ DeobankDeFi About WeFi - Script Version: FIXED-EVENT-LISTENERS-V3 loaded');
+        
         // ===== VIDEO MODAL FUNCTIONALITY (GLOBAL SCOPE) =====
         let vimeoPlayer = null;
         let youtubePlayer = null;
@@ -1759,24 +1768,17 @@
                 }
             });
             
-            // Video button event listener (eliminates inline onclick issues)
-            const videoButton = document.getElementById('videoButton');
-            if (videoButton) {
-                videoButton.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const platform = this.getAttribute('data-platform');
-                    const videoId = this.getAttribute('data-video-id');
-                    openVideoModal(e, platform, videoId);
-                });
-            }
-            
             // Video close button event listener
             const videoCloseBtn = document.getElementById('videoCloseBtn');
             if (videoCloseBtn) {
+                console.log('✅ Close button found - attaching event listener');
                 videoCloseBtn.addEventListener('click', function(e) {
                     e.preventDefault();
+                    console.log('❌ Close button clicked');
                     closeVideoModal();
                 });
+            } else {
+                console.error('❌ Close button NOT found - check HTML');
             }
             
             // Set dynamic copyright year
