@@ -860,10 +860,11 @@
             box-shadow: 0 8px 25px rgba(0, 255, 136, 0.5);
         }
         
-        .scroll-to-top::before {
-            content: '↑';
+        .scroll-arrow {
+            position: relative;
+            z-index: 1;
             font-size: 24px;
-            font-weight: bold;
+            font-weight: 700;
             color: var(--black);
         }
         
@@ -1774,7 +1775,9 @@
     </footer>
 
     <!-- SCROLL TO TOP BUTTON -->
-    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top"></button>
+    <button id="scrollToTopBtn" class="scroll-to-top" onclick="scrollToTop()" title="Back to top">
+        <span class="scroll-arrow">↑</span>
+    </button>
 
     <!-- JAVASCRIPT -->
     <script>
@@ -1927,6 +1930,14 @@
             }, 400);
         };
         
+        // Scroll to Top Function
+        window.scrollToTop = function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        };
+        
         console.log('✅ Video modal functions defined');
         console.log('✅ typeof openVideoModal:', typeof window.openVideoModal);
         
@@ -1943,6 +1954,18 @@
             
             console.log('Video modal element:', videoModal ? '✅ Found' : '❌ Not Found');
             console.log('Video iframe element:', videoIframe ? '✅ Found' : '❌ Not Found');
+            
+            // Initialize scroll-to-top button
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            
+            // Scroll to Top Button Functionality
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
             
             // Mobile menu toggle
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
