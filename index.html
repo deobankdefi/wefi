@@ -783,32 +783,30 @@
             color: var(--lime-green);
         }
         
-        .clone-offer {
+        .website-clone-offer {
             background: linear-gradient(135deg, rgba(199, 241, 96, 0.1), rgba(0, 255, 136, 0.1));
-            border: 1px solid var(--lime-green);
+            border: 1px solid rgba(199, 241, 96, 0.3);
             border-radius: 12px;
-            padding: 30px;
+            padding: 25px 30px;
+            margin-bottom: 30px;
             text-align: center;
-            margin-bottom: 40px;
         }
         
-        .clone-offer h3 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--lime-light);
-            line-height: 1.3;
-        }
-        
-        .clone-offer p {
+        .website-clone-offer p {
             color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 20px;
-            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 16px;
         }
         
-        .clone-offer .btn {
-            margin: 0 auto;
-            max-width: 100%;
+        .website-clone-offer a {
+            color: var(--lime-green);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 17px;
+        }
+        
+        .website-clone-offer a:hover {
+            color: var(--bright-green);
         }
         
         .disclaimer {
@@ -958,14 +956,6 @@
             .footer-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .clone-offer {
-                padding: 25px 20px;
-            }
-            
-            .clone-offer h3 {
-                font-size: 20px;
-            }
         }
         
         @media (max-width: 480px) {
@@ -1002,14 +992,6 @@
             
             .logo {
                 font-size: 24px;
-            }
-            
-            .clone-offer h3 {
-                font-size: 18px;
-            }
-            
-            .clone-offer {
-                padding: 20px 15px;
             }
         }
         
@@ -1514,12 +1496,12 @@
         <div class="nav-container">
             <div class="logo">DeobankDeFi</div>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About WeFi</a></li>
-                <li><a href="#wfi-token" class="nav-link">WFI Token</a></li>
-                <li><a href="#compensation" class="nav-link">Compensation</a></li>
-                <li><a href="#faq" class="nav-link">FAQ</a></li>
-                <li><a href="#getting-started" class="nav-link">Get Started</a></li>
+                <li><a href="deobankdefi-home.html" class="nav-link">Home</a></li>
+                <li><a href="deobankdefi-about-wefi.html" class="nav-link">About WeFi</a></li>
+                <li><a href="deobankdefi-wfi-token.html" class="nav-link">WFI Token</a></li>
+                <li><a href="deobankdefi-compensation.html" class="nav-link">Compensation</a></li>
+                <li><a href="deobankdefi-faq.html" class="nav-link">FAQ</a></li>
+                <li><a href="deobankdefi-getting-started.html" class="nav-link">Getting Started</a></li>
             </ul>
             <div class="mobile-menu-btn" id="mobileMenuBtn">
                 <span></span>
@@ -1844,13 +1826,9 @@
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-container">
-            <!-- Website Cloning Offer -->
-            <div class="clone-offer">
-                <h3>STOP Struggling. START Earning. Clone This Proven Website.</h3>
-                <p>Want your own high-converting WeFi affiliate website? Get an exact clone of this masterpiece for a small one-time fee and start building YOUR empire today.</p>
-                <a href="https://wa.me/27721714626" class="btn btn-primary" target="_blank">
-                    <span>Contact Us on WhatsApp →</span>
-                </a>
+            <div class="website-clone-offer">
+                <p><strong>STOP Struggling. START Earning.</strong></p>
+                <p>Want a high-converting WeFi affiliate website like this? <a href="https://wa.me/27721714626" target="_blank">Contact Us to Clone This Website</a></p>
             </div>
 
             <!-- Footer Links -->
@@ -1858,12 +1836,12 @@
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About WeFi</a></li>
-                        <li><a href="#wfi-token">WFI Token</a></li>
-                        <li><a href="#compensation">Compensation Plan</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="#getting-started">Getting Started</a></li>
+                        <li><a href="deobankdefi-home.html">Home</a></li>
+                        <li><a href="deobankdefi-about-wefi.html">About WeFi</a></li>
+                        <li><a href="deobankdefi-wfi-token.html">WFI Token</a></li>
+                        <li><a href="deobankdefi-compensation.html">Compensation Plan</a></li>
+                        <li><a href="deobankdefi-faq.html">FAQ</a></li>
+                        <li><a href="deobankdefi-getting-started.html">Getting Started</a></li>
                     </ul>
                 </div>
 
@@ -1871,8 +1849,9 @@
                     <h3>Official WeFi</h3>
                     <ul class="footer-links">
                         <li><a href="https://www.wefi.co" target="_blank">WeFi Official Website</a></li>
-                        <li><a href="https://wechain.ai" target="_blank">WeChain</a></li>
-                        <li><a href="https://app.wechain.ai" target="_blank">Dashboard Login</a></li>
+                        <li><a href="https://app.wechain.ai" target="_blank">Member Dashboard Login</a></li>
+                        <li><a href="https://new.salepoint.io/login" target="_blank">Affiliates Dashboard</a></li>
+                        <li><a href="https://wechain.ai" target="_blank">WeChain Blockchain</a></li>
                         <li><a href="https://www.wefi.co/blog" target="_blank">WeFi Blog</a></li>
                         <li><a href="https://www.youtube.com/@wefi.official" target="_blank">YouTube Channel</a></li>
                     </ul>
@@ -1898,7 +1877,7 @@
                     </ul>
                 </div>
             </div>
-
+            
             <!-- Disclaimer -->
             <div class="disclaimer">
                 <strong>Important Disclaimer:</strong> This information is not financial advice. Cryptocurrency investments carry risk. We encourage you to conduct your own research and consult with qualified financial advisors. The responsibility for any investment decisions rests solely with you. WeFi ITO units represent technology purchases, not securities. Past performance does not guarantee future results. All projections and potential earnings are estimates and not guarantees.
@@ -1906,7 +1885,7 @@
 
             <!-- Footer Bottom -->
             <div class="footer-bottom">
-                <p>&copy; 2025 DeobankDeFi.com | Empowering Financial Freedom Through WeFi | All Rights Reserved</p>
+                <p>&copy; <span id="currentYear"></span> DeobankDeFi.com | Empowering Financial Freedom Through WeFi | All Rights Reserved</p>
                 <p style="margin-top: 10px; font-size: 12px;">Referral Code: xn1nq150v0 | Independent WeFi Affiliate</p>
             </div>
         </div>
@@ -1916,6 +1895,9 @@
     <script>
         // Wait for DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', function() {
+            // Set dynamic copyright year
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
             // Video Modal Functionality
             let vimeoPlayer = null;
             let youtubePlayer = null;
