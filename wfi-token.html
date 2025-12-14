@@ -1,0 +1,2150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>WFI Token: Earn Passive Crypto Income | WeFi Tokenomics</title>
+    <meta name="description" content="Discover WFI Token, the utility token powering WeFi DeFi. Earn automated rewards for 8 years, stake for compound growth, and build long-term wealth.">
+    <meta name="keywords" content="WFI token, WeFi token, WFI tokenomics, crypto passive income, DeFi token, automated mining, WFI staking rewards, WeFi token utility">
+    <meta name="author" content="DeobankDeFi">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://deobankdefi.com/wfi-token">
+    <meta property="og:title" content="WFI Token: Earn Passive Crypto Income | WeFi Tokenomics">
+    <meta property="og:description" content="Discover WFI Token, the utility token powering WeFi DeFi. Earn automated rewards for 8 years, stake for compound growth, and build long-term wealth.">
+    <meta property="og:image" content="https://www.deobankdefi.com/images/favicon.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://deobankdefi.com/wfi-token">
+    <meta property="twitter:title" content="WFI Token: Earn Passive Crypto Income | WeFi Tokenomics">
+    <meta property="twitter:description" content="Discover WFI Token, the utility token powering WeFi DeFi. Earn automated rewards for 8 years, stake for compound growth, and build long-term wealth.">
+    <meta property="twitter:image" content="https://www.deobankdefi.com/images/favicon.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://www.deobankdefi.com/images/favicon.png">
+    
+    <!-- Vimeo Player API -->
+    <script src="https://player.vimeo.com/api/player.js" async></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            /* Primary Colors */
+            --lime-light: #D4EF89;
+            --lime-green: #C7F160;
+            --bright-green: #00FF88;
+            --spotify-green: #1ED760;
+            
+            /* Dark Backgrounds */
+            --black: #000000;
+            --near-black: #0A0A0A;
+            --dark-charcoal: #1A1A1A;
+            --very-dark-gray: #1B1B1B;
+            --near-black-2: #1E1E1E;
+            
+            /* Accent Colors */
+            --cyan: #00D9FF;
+            --dodger-blue: #1E90FF;
+            --royal-blue: #4169E1;
+            --light-blue: #3B82F6;
+            
+            /* Utility Colors */
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --gray: #808080;
+            --medium-gray: #4A4A4A;
+            --dark-gray: #1A1A1A;
+            
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        
+        /* ===== GLOBAL RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--near-black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* ===== NAVIGATION ===== */
+        .nav {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(199, 241, 96, 0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-link {
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .logo-link:hover {
+            opacity: 0.8;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--lime-green), var(--bright-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--lime-green);
+        }
+        
+        .nav-link.active {
+            color: var(--lime-green);
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--lime-green);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: var(--lime-green);
+            transition: all 0.3s ease;
+        }
+        
+        /* ===== HERO SECTION ===== */
+        .hero {
+            padding: 180px 30px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(199, 241, 96, 0.1), transparent 70%);
+            pointer-events: none;
+        }
+        
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .hero-title .highlight {
+            color: var(--white);
+        }
+        
+        .hero-subtitle {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--lime-light);
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+        
+        .hero-description {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 18px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--lime-green), var(--bright-green));
+            color: var(--black);
+            box-shadow: 0 4px 15px rgba(199, 241, 96, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(199, 241, 96, 0.5);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--lime-green);
+            border: 2px solid var(--lime-green);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(199, 241, 96, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* ===== SECTION STYLES ===== */
+        .section {
+            padding: 80px 30px;
+            position: relative;
+        }
+        
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+        
+        .section-title .highlight {
+            color: var(--white);
+        }
+        
+        .section-subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* ===== WHAT IS WFI ===== */
+        .what-is-wfi {
+            background: linear-gradient(180deg, var(--near-black), var(--dark-gray));
+        }
+        
+        .wfi-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 50px;
+            text-align: center;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .key-point {
+            background: rgba(199, 241, 96, 0.05);
+            border: 1px solid rgba(199, 241, 96, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .key-point:hover {
+            background: rgba(199, 241, 96, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(199, 241, 96, 0.2);
+        }
+        
+        .key-point-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .key-point-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+        
+        .key-point-text {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        
+        /* ===== TOKENOMICS ===== */
+        .tokenomics-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .tokenomics-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .tokenomics-text h3 {
+            color: var(--white);
+            font-size: 22px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        
+        .tokenomics-table {
+            background: rgba(199, 241, 96, 0.05);
+            border: 1px solid rgba(199, 241, 96, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .tokenomics-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .tokenomics-table th {
+            background: rgba(199, 241, 96, 0.1);
+            color: var(--lime-green);
+            font-weight: 700;
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid rgba(199, 241, 96, 0.3);
+        }
+        
+        .tokenomics-table td {
+            padding: 15px;
+            color: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(199, 241, 96, 0.1);
+        }
+        
+        .tokenomics-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .tokenomics-table td:nth-child(2) {
+            color: var(--lime-green);
+            font-weight: 600;
+        }
+        
+        /* ===== MINING SECTION ===== */
+        .mining {
+            background: linear-gradient(180deg, var(--dark-gray), var(--near-black));
+        }
+        
+        .mining-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 50px 0;
+        }
+        
+        .mining-step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--lime-green), var(--bright-green));
+            color: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 800;
+            margin: 0 auto 20px;
+        }
+        
+        .step-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 15px;
+        }
+        
+        .step-description {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        
+        .earning-example {
+            background: rgba(199, 241, 96, 0.05);
+            border: 1px solid rgba(199, 241, 96, 0.2);
+            border-radius: 12px;
+            padding: 40px;
+            margin-top: 50px;
+        }
+        
+        .earning-example h3 {
+            color: var(--white);
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .earning-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .earning-stat {
+            padding: 20px;
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--lime-green);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* ===== STAKING SECTION ===== */
+        .staking-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .staking-card {
+            background: rgba(199, 241, 96, 0.05);
+            border: 2px solid rgba(199, 241, 96, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .staking-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--lime-green), var(--bright-green));
+        }
+        
+        .staking-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(199, 241, 96, 0.3);
+            border-color: var(--lime-green);
+        }
+        
+        .staking-type {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+        
+        .apr {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--lime-green), var(--bright-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+        
+        .staking-details {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+        
+        .compound-example {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 12px;
+            padding: 40px;
+            margin-top: 50px;
+        }
+        
+        .compound-example h3 {
+            color: var(--white);
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .compound-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .compound-stat {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 255, 136, 0.05);
+            border-radius: 8px;
+        }
+        
+        .compound-stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--bright-green);
+            margin-bottom: 10px;
+        }
+        
+        .compound-stat-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* ===== UTILITY SECTION ===== */
+        .utility {
+            background: linear-gradient(180deg, var(--near-black), var(--dark-gray));
+        }
+        
+        .utility-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .utility-card {
+            background: rgba(199, 241, 96, 0.05);
+            border: 1px solid rgba(199, 241, 96, 0.2);
+            border-radius: 12px;
+            padding: 35px;
+            transition: all 0.3s ease;
+        }
+        
+        .utility-card:hover {
+            background: rgba(199, 241, 96, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(199, 241, 96, 0.2);
+        }
+        
+        .utility-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .utility-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 15px;
+        }
+        
+        .utility-list {
+            list-style: none;
+        }
+        
+        .utility-list li {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .utility-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--lime-green);
+            font-weight: 700;
+        }
+        
+        /* ===== VALUE PROP SECTION ===== */
+        .value-reasons {
+            display: grid;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .value-reason {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+        
+        .reason-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--lime-green), var(--bright-green));
+            color: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        
+        .reason-content h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+        
+        .reason-content p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+        
+        /* ===== GET STARTED SECTION ===== */
+        .get-started {
+            background: linear-gradient(180deg, var(--dark-gray), var(--near-black));
+        }
+        
+        .steps-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            margin: 50px 0;
+            position: relative;
+        }
+        
+        .timeline-step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .timeline-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--lime-green), var(--bright-green));
+            color: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 900;
+            margin: 0 auto 25px;
+            box-shadow: 0 5px 20px rgba(199, 241, 96, 0.4);
+        }
+        
+        .timeline-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 15px;
+        }
+        
+        .timeline-description {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        
+        .cta-center {
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        /* ===== FAQ SECTION ===== */
+        .faq-list {
+            max-width: 900px;
+            margin: 50px auto 0;
+        }
+        
+        .faq-item {
+            background: rgba(199, 241, 96, 0.05);
+            border: 1px solid rgba(199, 241, 96, 0.2);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question {
+            padding: 25px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--white);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            color: var(--lime-green);
+            background: rgba(199, 241, 96, 0.05);
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 28px;
+            color: var(--lime-green);
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-question.active::after {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            max-height: 500px;
+        }
+        
+        .faq-answer-content {
+            padding: 0 30px 25px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+        
+        /* ===== FINAL CTA SECTION ===== */
+        .final-cta {
+            background: linear-gradient(135deg, rgba(199, 241, 96, 0.1), rgba(0, 255, 136, 0.1));
+            border-top: 1px solid rgba(199, 241, 96, 0.2);
+            border-bottom: 1px solid rgba(199, 241, 96, 0.2);
+        }
+        
+        .final-cta-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .final-cta h2 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--lime-green), var(--bright-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .final-cta p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        
+        .urgency-points {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .urgency-point {
+            font-size: 15px;
+            color: var(--lime-green);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .urgency-point::before {
+            content: '⚡';
+            font-size: 20px;
+        }
+        
+        .final-cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* ===== FOOTER ===== */
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--near-black);
+            padding: 60px 40px 30px;
+            border-top: 1px solid rgba(199, 241, 96, 0.1);
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--lime-green);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--lime-green);
+        }
+        
+        .website-clone-offer {
+            background: linear-gradient(135deg, rgba(199, 241, 96, 0.1), rgba(0, 255, 136, 0.1));
+            border: 1px solid rgba(199, 241, 96, 0.3);
+            border-radius: 12px;
+            padding: 25px 30px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .website-clone-offer p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .website-clone-offer a {
+            color: var(--lime-green);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 17px;
+        }
+        
+        .website-clone-offer a:hover {
+            color: var(--bright-green);
+        }
+        
+        .disclaimer {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+        
+        /* ===== SCROLL TO TOP BUTTON ===== */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--lime-green), var(--bright-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
+            border: none;
+            color: var(--black);
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.5);
+        }
+        
+        .scroll-arrow {
+            position: relative;
+            z-index: 1;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--black);
+        }
+        
+        /* ===== VIDEO MODAL ===== */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .video-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            max-height: 85vh;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(30, 30, 30, 0.95));
+            border-radius: 20px;
+            padding: 8px;
+            box-shadow: 
+                0 25px 80px rgba(0, 255, 136, 0.3),
+                0 0 0 1px rgba(199, 241, 96, 0.3),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .video-modal.active .video-container {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .video-modal.closing .video-container {
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.6, 0.04, 0.98, 0.34);
+        }
+        
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        @supports (aspect-ratio: 16 / 9) {
+            .video-wrapper {
+                aspect-ratio: 16 / 9;
+            }
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 16px;
+        }
+        
+        .video-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: rgba(199, 241, 96, 0.1);
+            border: 2px solid var(--lime-green);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+        
+        .video-close:hover {
+            background: var(--lime-green);
+            color: var(--black);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 5px 20px rgba(199, 241, 96, 0.4);
+        }
+        
+        .video-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px 60px;
+            border-radius: 16px;
+            border: 2px solid var(--lime-green);
+            box-shadow: 0 10px 40px rgba(199, 241, 96, 0.3);
+        }
+        
+        .video-loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(199, 241, 96, 0.2);
+            border-top-color: var(--lime-green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        .video-loading-text {
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+        
+        .video-loading-subtext {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .video-loading.hidden {
+            display: none;
+        }
+        
+        body.modal-open {
+            position: fixed;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        /* ===== MOBILE RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                right: 0;
+                flex-direction: column;
+                background: rgba(10, 10, 10, 0.98);
+                padding: 30px;
+                gap: 20px;
+                transition: left 0.3s ease;
+                border-top: 1px solid rgba(199, 241, 96, 0.2);
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .hero {
+                padding: 140px 20px 60px;
+            }
+            
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .hero-subtitle {
+                font-size: 22px;
+            }
+            
+            .hero-description {
+                font-size: 16px;
+            }
+            
+            .section {
+                padding: 60px 20px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .section-subtitle {
+                font-size: 18px;
+            }
+            
+            .tokenomics-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .mining-steps,
+            .staking-options,
+            .utility-grid,
+            .steps-timeline {
+                grid-template-columns: 1fr;
+            }
+            
+            .value-reason {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .final-cta h2 {
+                font-size: 32px;
+            }
+            
+            .urgency-points {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .scroll-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .video-container {
+                width: 95%;
+                padding: 6px;
+                border-radius: 16px;
+            }
+            
+            .video-wrapper {
+                border-radius: 12px;
+            }
+            
+            .video-close {
+                top: -45px;
+                width: 36px;
+                height: 36px;
+                font-size: 20px;
+            }
+            
+            .video-loading {
+                padding: 30px 40px;
+                gap: 15px;
+            }
+            
+            .video-loading-spinner {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .footer {
+                padding: 40px 20px 20px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 28px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .btn {
+                padding: 15px 30px;
+                font-size: 14px;
+            }
+            
+            .scroll-to-top {
+                width: 40px;
+                height: 40px;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo-link">
+                <div class="logo">DeobankDeFi</div>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about-wefi.html" class="nav-link">About WeFi</a></li>
+                <li><a href="wfi-token.html" class="nav-link active">WFI Token</a></li>
+                <li><a href="compensation.html" class="nav-link">Compensation</a></li>
+                <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                <li><a href="getting-started.html" class="nav-link">Getting Started</a></li>
+            </ul>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1 class="hero-title">WFI Token: Your Key to <span class="highlight">Passive Crypto Income</span></h1>
+            <h2 class="hero-subtitle">Earn Automated Rewards for 8 Years While Building Long-Term Wealth</h2>
+            <p class="hero-description">
+                WFI is the native utility token powering the WeFi ecosystem. Designed for long-term value creation, WFI offers automated mining, generous staking rewards, and exclusive platform benefits. Start earning today.
+            </p>
+            <div class="hero-cta">
+                <a href="https://app.wechain.ai/register?ref=xn1nq150v0" class="btn btn-primary" target="_blank">
+                    <span>Start Mining WFI Now →</span>
+                </a>
+                <a href="#tokenomics" class="btn btn-secondary">
+                    <span>View Tokenomics ↓</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT IS WFI TOKEN -->
+    <section class="section what-is-wfi">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">What is <span class="highlight">WFI Token?</span></h2>
+            </div>
+            <p class="wfi-description">
+                WFI (WeFi Token) is the cornerstone of the WeFi DeFi ecosystem. As a utility token, WFI unlocks exclusive benefits, governance rights, and passive income opportunities for holders. Unlike speculative tokens, WFI is backed by real utility within a working platform serving a global community.
+            </p>
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">🪙</div>
+                    <div class="key-point-title">Utility Token</div>
+                    <div class="key-point-text">Powers the entire WeFi ecosystem</div>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">📊</div>
+                    <div class="key-point-title">Fixed Supply</div>
+                    <div class="key-point-text">1 billion max supply, only 75M in circulation</div>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🏛️</div>
+                    <div class="key-point-title">Governance</div>
+                    <div class="key-point-text">Vote on platform decisions and proposals</div>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">💰</div>
+                    <div class="key-point-title">Rewards</div>
+                    <div class="key-point-text">Earn through staking and automated mining</div>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔒</div>
+                    <div class="key-point-title">Security</div>
+                    <div class="key-point-text">Built on proven blockchain technology</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOKENOMICS -->
+    <section id="tokenomics" class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title"><span class="highlight">WFI Tokenomics:</span> Designed for Long-Term Value</h2>
+                <p class="section-subtitle">Fixed supply. Fair distribution. Real utility. Sustainable growth.</p>
+            </div>
+            <div class="tokenomics-content">
+                <div class="tokenomics-text">
+                    <h3>Total Supply</h3>
+                    <p><strong style="color: var(--lime-green); font-size: 28px;">1 Billion WFI Tokens</strong></p>
+                    <p style="margin-top: 10px;">WFI has a fixed maximum supply of 1 billion tokens. With only approximately 75 million tokens currently in circulation, this creates natural scarcity as demand grows. This deflationary model ensures long-term value appreciation for holders.</p>
+                    
+                    <h3>Current Circulation</h3>
+                    <p><strong style="color: var(--bright-green); font-size: 24px;">~75 Million Tokens</strong></p>
+                    <p style="margin-top: 10px;">Only 7.5% of the total supply is currently in circulation. This means 92.5% of tokens are still to be distributed through mining, staking rewards, and ecosystem development.</p>
+                    
+                    <h3>Distribution</h3>
+                    <p>Fair allocation across all ecosystem participants. The majority of tokens are distributed to the community through mining and staking rewards, ensuring decentralization.</p>
+                    
+                    <h3>Deflationary Mechanics</h3>
+                    <p>Strategic token burns and buyback programs reduce circulating supply over time, increasing scarcity and value for remaining holders.</p>
+                </div>
+                <div class="tokenomics-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Allocation</th>
+                                <th>Percentage</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Community Mining</td>
+                                <td>40%</td>
+                                <td>8-year automated distribution</td>
+                            </tr>
+                            <tr>
+                                <td>Staking Rewards</td>
+                                <td>25%</td>
+                                <td>Incentivize long-term holding</td>
+                            </tr>
+                            <tr>
+                                <td>Team & Advisors</td>
+                                <td>15%</td>
+                                <td>Vested over 4 years</td>
+                            </tr>
+                            <tr>
+                                <td>Liquidity</td>
+                                <td>10%</td>
+                                <td>Exchange listings</td>
+                            </tr>
+                            <tr>
+                                <td>Development</td>
+                                <td>10%</td>
+                                <td>Platform growth</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUTOMATED MINING -->
+    <section class="section mining">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title"><span class="highlight">8-Year Automated Mining:</span> Earn WFI While You Sleep</h2>
+                <p class="section-subtitle">No Technical Knowledge Required. No Equipment Needed. Just Passive Income.</p>
+            </div>
+            <div class="mining-steps">
+                <div class="mining-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Sign Up</h3>
+                    <p class="step-description">Create your WeFi account in under 2 minutes. Simple, secure, and straightforward.</p>
+                </div>
+                <div class="mining-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Activate Mining</h3>
+                    <p class="step-description">One-click activation. Set it and forget it. Your mining starts immediately.</p>
+                </div>
+                <div class="mining-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Earn Daily</h3>
+                    <p class="step-description">WFI tokens deposited automatically to your wallet for the full 8 years.</p>
+                </div>
+            </div>
+            <div class="earning-example">
+                <h3>Earning Potential Example</h3>
+                <div class="earning-stats">
+                    <div class="earning-stat">
+                        <div class="stat-value">$1,000</div>
+                        <div class="stat-label">Initial Investment</div>
+                    </div>
+                    <div class="earning-stat">
+                        <div class="stat-value">Daily</div>
+                        <div class="stat-label">WFI Rewards</div>
+                    </div>
+                    <div class="earning-stat">
+                        <div class="stat-value">Monthly</div>
+                        <div class="stat-label">Accumulation</div>
+                    </div>
+                    <div class="earning-stat">
+                        <div class="stat-value">8 Years</div>
+                        <div class="stat-label">Total Duration</div>
+                    </div>
+                </div>
+            </div>
+            <div class="cta-center">
+                <a href="https://app.wechain.ai/register?ref=xn1nq150v0" class="btn btn-primary" target="_blank">
+                    <span>Start Your Mining Journey →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STAKING REWARDS -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title"><span class="highlight">Stake WFI, Earn More:</span> Compound Your Wealth</h2>
+                <p class="section-subtitle">Choose flexible or locked staking based on your strategy. Watch your holdings grow through compound interest.</p>
+            </div>
+            <div class="staking-options">
+                <div class="staking-card">
+                    <h3 class="staking-type">Flexible Staking</h3>
+                    <div class="apr">Variable APR</div>
+                    <p class="staking-details">
+                        Stake and unstake anytime. Perfect for those who want liquidity while earning passive rewards. No lock-up period.
+                    </p>
+                </div>
+                <div class="staking-card">
+                    <h3 class="staking-type">90-Day Locked</h3>
+                    <div class="apr">Higher APR</div>
+                    <p class="staking-details">
+                        Lock your WFI for 90 days and earn enhanced rewards. Ideal for medium-term holders seeking better returns.
+                    </p>
+                </div>
+                <div class="staking-card">
+                    <h3 class="staking-type">180-Day Locked</h3>
+                    <div class="apr">Maximum APR</div>
+                    <p class="staking-details">
+                        Maximum rewards for maximum commitment. Lock for 180 days and receive the highest staking APR available.
+                    </p>
+                </div>
+            </div>
+            <div class="compound-example">
+                <h3>The Power of Compound Interest</h3>
+                <div class="compound-stats">
+                    <div class="compound-stat">
+                        <div class="compound-stat-value">10,000 WFI</div>
+                        <div class="compound-stat-label">Initial Stake</div>
+                    </div>
+                    <div class="compound-stat">
+                        <div class="compound-stat-value">11,800 WFI</div>
+                        <div class="compound-stat-label">After 1 Year (18% APR)</div>
+                    </div>
+                    <div class="compound-stat">
+                        <div class="compound-stat-value">16,400+ WFI</div>
+                        <div class="compound-stat-label">After 3 Years (Compounded)</div>
+                    </div>
+                </div>
+            </div>
+            <div class="cta-center">
+                <a href="https://app.wechain.ai/register?ref=xn1nq150v0" class="btn btn-primary" target="_blank">
+                    <span>Start Staking WFI →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOKEN UTILITY -->
+    <section class="section utility">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Why <span class="highlight">WFI Matters:</span> Real Utility, Real Value</h2>
+                <p class="section-subtitle">WFI is not a speculative token. It is the functional engine of the WeFi ecosystem.</p>
+            </div>
+            <div class="utility-grid">
+                <div class="utility-card">
+                    <div class="utility-icon">💳</div>
+                    <h3 class="utility-title">Platform Access</h3>
+                    <ul class="utility-list">
+                        <li>Reduced fees on WeFi services</li>
+                        <li>Priority customer support</li>
+                        <li>Exclusive features and tools</li>
+                        <li>Enhanced transaction limits</li>
+                    </ul>
+                </div>
+                <div class="utility-card">
+                    <div class="utility-icon">🏛️</div>
+                    <h3 class="utility-title">Governance Rights</h3>
+                    <ul class="utility-list">
+                        <li>Vote on platform upgrades</li>
+                        <li>Propose new features</li>
+                        <li>Shape WeFi's future direction</li>
+                        <li>Community-driven development</li>
+                    </ul>
+                </div>
+                <div class="utility-card">
+                    <div class="utility-icon">🎁</div>
+                    <h3 class="utility-title">Exclusive Benefits</h3>
+                    <ul class="utility-list">
+                        <li>Early access to new products</li>
+                        <li>Bonus reward multipliers</li>
+                        <li>VIP community access</li>
+                        <li>Special airdrops and promotions</li>
+                    </ul>
+                </div>
+                <div class="utility-card">
+                    <div class="utility-icon">💎</div>
+                    <h3 class="utility-title">Long-Term Value</h3>
+                    <ul class="utility-list">
+                        <li>Deflationary tokenomics</li>
+                        <li>Growing ecosystem demand</li>
+                        <li>Proven leadership team</li>
+                        <li>Sustainable reward model</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALUE PROPOSITION -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Why Hold <span class="highlight">WFI?</span> The Long-Term Case</h2>
+                <p class="section-subtitle">Five compelling reasons smart investors choose WFI for long-term wealth building</p>
+            </div>
+            <div class="value-reasons">
+                <div class="value-reason">
+                    <div class="reason-number">1</div>
+                    <div class="reason-content">
+                        <h3>Scarcity Value</h3>
+                        <p>Fixed supply meets growing demand. As WeFi expands globally and adds millions of users, WFI becomes increasingly valuable. Early holders benefit most from network growth.</p>
+                    </div>
+                </div>
+                <div class="value-reason">
+                    <div class="reason-number">2</div>
+                    <div class="reason-content">
+                        <h3>Dual Income Streams</h3>
+                        <p>Earn from two sources: automated mining (8 years guaranteed) and staking rewards (unlimited duration). Build passive wealth while you sleep, work, or travel.</p>
+                    </div>
+                </div>
+                <div class="value-reason">
+                    <div class="reason-number">3</div>
+                    <div class="reason-content">
+                        <h3>Proven Leadership</h3>
+                        <p>Founded by Reeve Collins, co-founder and former CEO of Tether (USDT). Experienced team with a proven track record in crypto and financial innovation.</p>
+                    </div>
+                </div>
+                <div class="value-reason">
+                    <div class="reason-number">4</div>
+                    <div class="reason-content">
+                        <h3>Real Utility, Not Speculation</h3>
+                        <p>WFI powers a working platform with real users, real revenue, and real value. This is not a meme coin. This is functional cryptocurrency with purpose.</p>
+                    </div>
+                </div>
+                <div class="value-reason">
+                    <div class="reason-number">5</div>
+                    <div class="reason-content">
+                        <h3>Network Effects</h3>
+                        <p>As more users join WeFi, demand for WFI increases exponentially. Each new user adds value to the entire ecosystem. Early adopters capture maximum upside.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GET STARTED -->
+    <section class="section get-started">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Start Earning <span class="highlight">WFI</span> in 3 Simple Steps</h2>
+                <p class="section-subtitle">Join thousands of smart investors building passive income through WFI</p>
+            </div>
+            <div class="steps-timeline">
+                <div class="timeline-step">
+                    <div class="timeline-number">1</div>
+                    <h3 class="timeline-title">Create Account</h3>
+                    <p class="timeline-description">Sign up for WeFi in under 2 minutes. No credit check. No hidden fees. Simple and secure registration.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-number">2</div>
+                    <h3 class="timeline-title">Activate Mining</h3>
+                    <p class="timeline-description">One-click mining activation. Your WFI accumulation starts immediately. Set it and forget it.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-number">3</div>
+                    <h3 class="timeline-title">Earn & Stake</h3>
+                    <p class="timeline-description">Watch your WFI balance grow daily. Stake for additional compound rewards. Build long-term wealth.</p>
+                </div>
+            </div>
+            <div class="cta-center">
+                <a href="https://app.wechain.ai/register?ref=xn1nq150v0" class="btn btn-primary" target="_blank" style="font-size: 18px; padding: 20px 50px;">
+                    <span>Get Started Now →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title"><span class="highlight">WFI Token FAQ:</span> Your Questions Answered</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is the total supply of WFI?
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            WFI has a fixed maximum supply of <strong>1 billion tokens</strong>. With only approximately <strong>75 million tokens currently in circulation</strong> (7.5% of total supply), this creates natural scarcity as demand grows. The fixed supply ensures that as adoption increases, value appreciates for holders. The remaining 92.5% of tokens will be distributed through community mining (40%), staking rewards (25%), team allocation (15%), liquidity (10%), and development (10%).
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How long does automated mining last?
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Automated mining lasts for 8 years from the date you activate your account. You earn daily WFI tokens for the entire 8-year period. This provides consistent, predictable passive income with no additional effort required.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I sell my WFI tokens?
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes. WFI is tradeable on supported cryptocurrency exchanges. You have full control of your tokens at all times. You can hold for long-term value appreciation, stake for rewards, or trade as you see fit.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is staking WFI safe?
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes. Staking on the WeFi platform is designed with security as a priority. You maintain control of your tokens at all times. The platform uses industry-standard security practices and is built by experienced blockchain developers.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What happens after 8 years of mining?
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            After 8 years, automated mining rewards end. However, you can continue earning through staking rewards, which have no time limit. Additionally, WFI holders receive exclusive platform benefits and governance rights indefinitely.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How is WFI different from other crypto tokens?
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            WFI has real utility within a working platform serving a global community. It is not a speculative or meme token. WFI provides governance rights, platform access, staking rewards, and exclusive benefits. It is backed by a proven team led by Tether co-founder Reeve Collins.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section final-cta">
+        <div class="section-container">
+            <div class="final-cta-content">
+                <h2>Ready to Start Earning WFI?</h2>
+                <p>Join thousands of smart investors building passive income through WFI. No technical knowledge required. No equipment needed. Just consistent, automated rewards deposited to your wallet.</p>
+                <div class="urgency-points">
+                    <div class="urgency-point">Limited time: Bonus WFI for new sign-ups</div>
+                    <div class="urgency-point">Join 50,000+ active miners worldwide</div>
+                    <div class="urgency-point">Start earning in under 5 minutes</div>
+                </div>
+                <div class="final-cta-buttons">
+                    <a href="https://app.wechain.ai/register?ref=xn1nq150v0" class="btn btn-primary" target="_blank" style="font-size: 18px; padding: 20px 50px;">
+                        <span>Start Mining WFI Now →</span>
+                    </a>
+                    <a href="#" class="btn btn-secondary" onclick="openVideoModal(event, 'vimeo', '1145731075')" style="font-size: 18px; padding: 20px 50px;">
+                        <span>Watch WFI Explainer Video</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO MODAL -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-container">
+            <div class="video-close" onclick="closeVideoModal()">×</div>
+            <div class="video-wrapper">
+                <div class="video-loading" id="videoLoading">
+                    <div class="video-loading-spinner"></div>
+                    <div class="video-loading-text">Loading WFI Video...</div>
+                    <div class="video-loading-subtext">Please wait a moment</div>
+                </div>
+                <iframe 
+                    id="vimeoPlayer"
+                    src=""
+                    frameborder="0"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button id="scrollToTopBtn" class="scroll-to-top" onclick="scrollToTop()" title="Back to top">
+        <span class="scroll-arrow">↑</span>
+    </button>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="website-clone-offer">
+                <p><strong>STOP Struggling. START Earning.</strong></p>
+                <p>Want a high-converting WeFi affiliate website like this? <a href="https://wa.me/27721714626" target="_blank">Contact Us to Clone This Website</a></p>
+            </div>
+
+            <!-- Footer Links -->
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about-wefi.html">About WeFi</a></li>
+                        <li><a href="wfi-token.html">WFI Token</a></li>
+                        <li><a href="compensation.html">Compensation Plan</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="getting-started.html">Getting Started</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Official WeFi</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://www.wefi.co" target="_blank">WeFi Official Website</a></li>
+                        <li><a href="https://app.wechain.ai" target="_blank">Member Dashboard Login</a></li>
+                        <li><a href="https://new.salepoint.io/login" target="_blank">Affiliates Dashboard</a></li>
+                        <li><a href="https://wechain.ai" target="_blank">WeChain Blockchain</a></li>
+                        <li><a href="https://www.wefi.co/blog" target="_blank">WeFi Blog</a></li>
+                        <li><a href="https://www.youtube.com/@wefi.official" target="_blank">YouTube Channel</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Legal & Compliance</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://wechain.ai/files/terms_and_conditions.pdf" target="_blank">Terms & Conditions</a></li>
+                        <li><a href="https://wechain.ai/files/privacy_policy.pdf" target="_blank">Privacy Policy</a></li>
+                        <li><a href="https://wechain.ai/files/disclaimer.pdf" target="_blank">Disclaimer</a></li>
+                        <li><a href="https://wechain.ai/files/node_agreement.pdf" target="_blank">Node Agreement</a></li>
+                        <li><a href="https://wechain.ai/files/wfi_utlization_agreement.pdf" target="_blank">WFI Utilization</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Connect With Your Sponsor</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://wa.me/27721714626" target="_blank">WhatsApp</a></li>
+                        <li><a href="https://chat.whatsapp.com/K0oHN9gKBNTFnOo3QEkgWv?mode=hqrt2" target="_blank">WhatsApp Group</a></li>
+                        <li><a href="https://www.facebook.com/Musa.TheMTG" target="_blank">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Disclaimer -->
+            <div class="disclaimer">
+                <strong>Important Disclaimer:</strong> This information is not financial advice. Cryptocurrency investments carry risk. We encourage you to conduct your own research and consult with qualified financial advisors. The responsibility for any investment decisions rests solely with you. WeFi ITO units represent technology purchases, not securities. Past performance does not guarantee future results. All projections and potential earnings are estimates and not guarantees.
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> DeobankDeFi.com | Empowering Financial Freedom Through WeFi | All Rights Reserved</p>
+                <p style="margin-top: 10px; font-size: 12px;">Referral Code: xn1nq150v0 | Independent WeFi Affiliate</p>
+            </div>
+        </div>
+    </footer>
+    <!-- JAVASCRIPT -->
+    <script>
+        console.log('✅ WFI Token page script loading...');
+        
+        // ===== VIDEO MODAL VARIABLES (GLOBAL) =====
+        let vimeoPlayer = null;
+        let videoModal = null;
+        let videoIframe = null;
+        
+        // ===== VIDEO MODAL FUNCTIONS =====
+        
+        // Wait for Vimeo API
+        function waitForVimeo(maxAttempts = 20, attemptDelay = 100) {
+            return new Promise((resolve, reject) => {
+                let attempts = 0;
+                const checkVimeo = () => {
+                    attempts++;
+                    if (window.Vimeo && window.Vimeo.Player) {
+                        console.log('✅ Vimeo API Ready');
+                        resolve();
+                    } else if (attempts >= maxAttempts) {
+                        reject(new Error('Vimeo API did not load in time'));
+                    } else {
+                        setTimeout(checkVimeo, attemptDelay);
+                    }
+                };
+                checkVimeo();
+            });
+        }
+        
+        // Initialize Vimeo Player
+        async function initVimeoPlayer(videoId) {
+            try {
+                console.log('🎬 Initializing Vimeo player for video:', videoId);
+                
+                const loadingElement = document.getElementById('videoLoading');
+                if (loadingElement) {
+                    loadingElement.classList.remove('hidden');
+                }
+                
+                await waitForVimeo();
+                
+                const vimeoUrl = `https://player.vimeo.com/video/${videoId}?autoplay=1&autopause=0&muted=0&controls=1&title=0&byline=0&portrait=0&color=C7F160`;
+                
+                videoIframe.src = vimeoUrl;
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                vimeoPlayer = new Vimeo.Player(videoIframe);
+                
+                vimeoPlayer.on('play', function() {
+                    console.log('▶️ Vimeo video playing');
+                    if (loadingElement) loadingElement.classList.add('hidden');
+                });
+                
+                vimeoPlayer.on('loaded', function() {
+                    console.log('✅ Vimeo video loaded');
+                    if (loadingElement) loadingElement.classList.add('hidden');
+                });
+                
+                vimeoPlayer.on('ended', function() {
+                    console.log('⏹️ Vimeo video ended');
+                    setTimeout(closeVideoModal, 500);
+                });
+                
+                return true;
+            } catch (error) {
+                console.error('❌ Error initializing Vimeo player:', error);
+                const loadingElement = document.getElementById('videoLoading');
+                if (loadingElement) loadingElement.classList.add('hidden');
+                alert('Unable to load video. Please try again or refresh the page.');
+                closeVideoModal();
+                return false;
+            }
+        }
+        
+        // Open Video Modal
+        window.openVideoModal = async function(event, platform = 'vimeo', videoId = '1145731075') {
+            console.log('🎬 openVideoModal called - Platform:', platform, 'VideoID:', videoId);
+            
+            if (event) {
+                event.preventDefault();
+            }
+            
+            // Get modal elements
+            videoModal = document.getElementById('videoModal');
+            videoIframe = document.getElementById('vimeoPlayer');
+            
+            if (!videoModal || !videoIframe) {
+                console.error('❌ Modal elements not found!');
+                console.log('videoModal:', videoModal);
+                console.log('videoIframe:', videoIframe);
+                return;
+            }
+            
+            console.log('✅ Modal elements found, opening modal...');
+            
+            const loadingElement = document.getElementById('videoLoading');
+            if (loadingElement) {
+                loadingElement.classList.remove('hidden');
+            }
+            
+            document.body.classList.add('modal-open');
+            videoModal.classList.add('active');
+            
+            await new Promise(resolve => setTimeout(resolve, 100));
+            
+            if (platform === 'vimeo') {
+                vimeoPlayer = null;
+                await initVimeoPlayer(videoId);
+            }
+        };
+        
+        // Close Video Modal
+        window.closeVideoModal = function() {
+            console.log('❌ Closing video modal');
+            
+            if (!videoModal) {
+                videoModal = document.getElementById('videoModal');
+            }
+            
+            if (!videoModal) return;
+            
+            videoModal.classList.add('closing');
+            
+            if (vimeoPlayer) {
+                try {
+                    vimeoPlayer.pause();
+                    vimeoPlayer.destroy();
+                } catch (error) {
+                    console.error('Error stopping Vimeo:', error);
+                }
+                vimeoPlayer = null;
+            }
+            
+            setTimeout(function() {
+                videoModal.classList.remove('active');
+                videoModal.classList.remove('closing');
+                
+                if (videoIframe) {
+                    videoIframe.src = '';
+                }
+                
+                document.body.classList.remove('modal-open');
+                
+                const loadingElement = document.getElementById('videoLoading');
+                if (loadingElement) {
+                    loadingElement.classList.remove('hidden');
+                }
+            }, 400);
+        };
+        
+        // Scroll to Top Function
+        window.scrollToTop = function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        };
+        
+        console.log('✅ Video modal functions defined');
+        console.log('✅ typeof openVideoModal:', typeof window.openVideoModal);
+        
+        // ===== DOM CONTENT LOADED =====
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('✅ DOMContentLoaded fired');
+            
+            // Set dynamic copyright year
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Initialize modal elements
+            videoModal = document.getElementById('videoModal');
+            videoIframe = document.getElementById('vimeoPlayer');
+            
+            console.log('Video modal element:', videoModal ? '✅ Found' : '❌ Not Found');
+            console.log('Video iframe element:', videoIframe ? '✅ Found' : '❌ Not Found');
+            
+            // Initialize scroll-to-top button
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            
+            // Scroll to Top Button Functionality
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (mobileMenuBtn && navMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+            }
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                });
+            });
+
+            // FAQ accordion
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // Close all other FAQs
+                    document.querySelectorAll('.faq-question').forEach(q => {
+                        q.classList.remove('active');
+                        q.nextElementSibling.classList.remove('active');
+                    });
+                    
+                    // Toggle current FAQ
+                    if (!isActive) {
+                        this.classList.add('active');
+                        answer.classList.add('active');
+                    }
+                });
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#' || href === 'javascript:void(0)') return;
+                    
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Video modal event listeners
+            if (videoModal) {
+                // Close on background click
+                videoModal.addEventListener('click', function(e) {
+                    if (e.target === videoModal) {
+                        closeVideoModal();
+                    }
+                });
+            }
+            
+            // Close on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && videoModal && videoModal.classList.contains('active')) {
+                    closeVideoModal();
+                }
+            });
+            
+            console.log('✅ All event listeners attached');
+            
+        }); // End of DOMContentLoaded
+        
+        console.log('✅ Script fully loaded');
+    </script>
+</body>
+                  </html>
