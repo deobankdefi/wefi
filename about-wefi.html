@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About WeFi - The World's First Deobank | DeobankDeFi</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Discover WeFi, the world's first Deobank founded by Reeve Collins (Tether co-founder). Learn how we're revolutionizing finance with blockchain technology, AI compliance, and true financial freedom.">
+    <meta name="keywords" content="WeFi, Deobank, Reeve Collins, Tether, decentralized banking, DeFi, WFI token, blockchain banking, crypto banking">
+    <meta name="author" content="DeobankDeFi">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="About WeFi - World's First Deobank">
+    <meta property="og:description" content="Founded by Tether's co-founder Reeve Collins, WeFi is revolutionizing global finance with decentralized banking, AI compliance, and blockchain technology.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://deobankdefi.com/about-wefi">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            /* WeFi Brand Colors */
+            --lime-green: #C7F160;
+            --bright-green: #00FF88;
+            --lime-light: #D4EF89;
+            
+            /* Base Colors */
+            --black: #000000;
+            --near-black: #0A0A0A;
+            --dark-charcoal: #1A1A1A;
+            --very-dark-gray: #1B1B1B;
+            --dark-bg: #1E1E1E;
+            --white: #FFFFFF;
+            
+            /* Accent Colors */
+            --cyan: #00D9FF;
+            --purple: #6C63FF;
+            --red: #DC2626;
+            
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            
+            /* Spacing */
+            --section-padding: 80px;
+        }
+        
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            background: linear-gradient(135deg, var(--black) 0%, var(--near-black) 50%, var(--dark-charcoal) 100%);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* ===== NAVIGATION ===== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(199, 241, 96, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--lime-green), var(--bright-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--lime-green);
+        }
+        
+        .nav-link.active {
+            color: var(--lime-green);
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--lime-green);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 2px;
+            background: var(--lime-green);
+            transition: all 0.3s ease;
+        }
+        
+        /* ===== HERO SECTION ===== */
+        .hero {
+            padding: 160px 40px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(199, 241, 96, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(199, 241, 96, 0.1), rgba(0, 255, 136, 0.1));
+            border: 1px solid rgba(199, 241, 96, 0.3);
+            border-radius: 50px;
+            padding: 10px 25px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--lime-green);
+            letter-spacing: 0.5px;
+        }
+        
+        .hero-title {
+            font-size: clamp(42px, 6vw, 68px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, var(--white) 0%, var(--lime-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1.5px;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(20px, 3vw, 28px);
+            color: var(--lime-green);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .hero-description {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+        
+        /* ===== SECTION STYLES ===== */
+        .section {
+            padding: var(--section-padding) 40px;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .section-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* ===== STORY SECTION ===== */
+        .story-content {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.5), rgba(30, 30, 30, 0.5));
+            border-radius: 24px;
+            padding: 60px 50px;
+            border: 1px solid rgba(199, 241, 96, 0.2);
+            margin-bottom: 60px;
+        }
+        
+        .story-text {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.9;
+            margin-bottom: 25px;
+        }
+        
+        .story-highlight {
+            background: linear-gradient(135deg, rgba(199, 241, 96, 0.1), rgba(0, 255, 136, 0.1));
+            border-left: 3px solid var(--lime-green);
+            padding: 30px 35px;
+            border-radius: 12px;
+            margin: 35px 0;
+        }
+        
+        .story-highlight p {
+            font-size: 20px;
+            color: var(--lime-light);
+            font-weight: 600;
+            line-height: 1.7;
+        }
+        
+        /* ===== DEOBANK VS NEOBANK ===== */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .comparison-card {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.5), rgba(30, 30, 30, 0.5));
+            border-radius: 20px;
+            padding: 40px 35px;
+            border: 1px solid rgba(199, 241, 96, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--lime-green);
+            box-shadow: 0 20px 60px rgba(199, 241, 96, 0.2);
+        }
+        
+        .comparison-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--lime-green), var(--bright-green));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .comparison-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .comparison-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .comparison-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--lime-light);
+        }
+        
+        .comparison-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .comparison-features {
+            list-style: none;
+        }
+        
+        .comparison-features li {
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .comparison-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--bright-green);
+            font-weight: bold;
+        }
+        
+        /* ===== TEAM SECTION ===== */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+        
+        .team-card {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.5), rgba(30, 30, 30, 0.5));
+            border-radius: 20px;
+            padding: 35px;
+            border: 1px solid rgba(199, 241, 96, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--lime-green);
+            box-shadow: 0 20px 60px rgba(199, 241, 96, 0.2);
+        }
+        
+        .team-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--lime-green), var(--bright-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            border: 3px solid rgba(199, 241, 96, 0.3);
+        }
+        
+        .team-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--lime-light);
+        }
+        
+        .team-role {
+            font-size: 15px;
+            color: var(--lime-green);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .team-bio {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+        }
+        
+        /* ===== MISSION & VISION ===== */
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .mission-card {
+            background: linear-gradient(135deg, rgba(199, 241, 96, 0.05), rgba(0, 255, 136, 0.05));
+            border-radius: 20px;
+            padding: 45px 40px;
+            border: 1px solid rgba(199, 241, 96, 0.3);
+        }
+        
+        .mission-icon {
+            font-size: 52px;
+            margin-bottom: 25px;
+        }
+        
+        .mission-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--lime-green);
+        }
+        
+        .mission-text {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+        
+        /* ===== STATS SECTION ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 35px 25px;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.5), rgba(30, 30, 30, 0.5));
+            border-radius: 16px;
+            border: 1px solid rgba(199, 241, 96, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--lime-green), var(--bright-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+        }
+        
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--lime-green), var(--bright-green));
+            color: var(--black);
+            box-shadow: 0 10px 30px rgba(199, 241, 96, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(199, 241, 96, 0.5);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--lime-green);
+            border: 2px solid var(--lime-green);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(199, 241, 96, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        /* ===== MINI FAQ SECTION ===== */
+        .mini-faq {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.5), rgba(30, 30, 30, 0.5));
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin-top: 80px;
+            border: 1px solid rgba(199, 241, 96, 0.2);
+        }
+        
+        .faq-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 50px;
+            color: var(--lime-light);
+        }
+        
+        .faq-item {
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 25px;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .faq-question {
+            background: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
+            padding: 18px 0;
+            font-size: 19px;
+            font-weight: 600;
+            color: var(--white);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-primary);
+            transition: color 0.3s ease;
+            line-height: 1.4;
+        }
+        
+        .faq-question:hover {
+            color: var(--lime-green);
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 28px;
+            color: var(--lime-green);
+            transition: transform 0.3s ease;
+            margin-left: 15px;
+            flex-shrink: 0;
+        }
+        
+        .faq-question.active::after {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        
+        .faq-answer.active {
+            max-height: 500px;
+            padding-top: 10px;
+            padding-bottom: 5px;
+        }
+        
+        /* Mobile FAQ optimization */
+        @media (max-width: 768px) {
+            .faq-answer {
+                font-size: 15px;
+                line-height: 1.8;
+            }
+            
+            .faq-answer.active {
+                max-height: 800px;
+            }
+            
+            .faq-question {
+                font-size: 17px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .faq-answer {
+                font-size: 14px;
+                line-height: 1.9;
+            }
+            
+            .faq-answer.active {
+                max-height: 1000px;
+            }
+            
+            .faq-question {
+                font-size: 16px;
+            }
+        }
+        
+        .faq-cta {
+            text-align: center;
+            margin-top: 45px;
+        }
+        
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--near-black);
+            padding: 60px 40px 30px;
+            border-top: 1px solid rgba(199, 241, 96, 0.1);
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            color: var(--lime-green);
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 15px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--lime-green);
+        }
+        
+        .website-clone-offer {
+            background: linear-gradient(135deg, rgba(199, 241, 96, 0.1), rgba(0, 255, 136, 0.1));
+            border: 1px solid rgba(199, 241, 96, 0.3);
+            border-radius: 12px;
+            padding: 25px 30px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .website-clone-offer p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .website-clone-offer a {
+            color: var(--lime-green);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 17px;
+        }
+        
+        .website-clone-offer a:hover {
+            color: var(--bright-green);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+        
+        .disclaimer {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            max-width: 900px;
+            margin: 20px auto 0;
+            line-height: 1.6;
+        }
+        
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            :root {
+                --section-padding: 60px;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background: rgba(0, 0, 0, 0.98);
+                width: 100%;
+                padding: 40px;
+                gap: 25px;
+                transition: left 0.3s ease;
+                border-top: 1px solid rgba(199, 241, 96, 0.2);
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .hero {
+                padding: 120px 25px 60px;
+            }
+            
+            .section {
+                padding: 60px 25px;
+            }
+            
+            .story-content {
+                padding: 40px 30px;
+            }
+            
+            .mini-faq {
+                padding: 45px 25px;
+            }
+            
+            .footer {
+                padding: 45px 25px 25px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-on-scroll {
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        /* ===== SCROLL TO TOP BUTTON ===== */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--lime-green), var(--bright-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
+            border: none;
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.5);
+        }
+        
+        .scroll-to-top::before {
+            content: '↑';
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--black);
+        }
+        
+        @media (max-width: 768px) {
+            .scroll-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .scroll-to-top {
+                width: 40px;
+                height: 40px;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="logo">DeobankDeFi</div>
+            <ul class="nav-menu">
+                <li><a href="deobankdefi-home.html" class="nav-link">Home</a></li>
+                <li><a href="deobankdefi-about-wefi.html" class="nav-link active">About WeFi</a></li>
+                <li><a href="deobankdefi-wfi-token.html" class="nav-link">WFI Token</a></li>
+                <li><a href="deobankdefi-compensation.html" class="nav-link">Compensation</a></li>
+                <li><a href="deobankdefi-faq.html" class="nav-link">FAQ</a></li>
+                <li><a href="deobankdefi-getting-started.html" class="nav-link">Getting Started</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🏆 WORLD'S FIRST DEOBANK</div>
+            <h1 class="hero-title">The Future of Finance Is Here</h1>
+            <p class="hero-subtitle">Founded by Crypto Legends. Built for Financial Freedom.</p>
+            <p class="hero-description">
+                WeFi is revolutionizing global finance by combining the best of traditional banking with blockchain technology. Founded by Reeve Collins, co-founder of Tether, we're creating a financial system that puts you in control.
+            </p>
+            <div class="cta-buttons">
+                <a href="https://app.wechain.ai/register?ref=xn1nq150v0" class="btn btn-primary" target="_blank">
+                    <span>Join WeFi Now</span>
+                </a>
+                <a href="#story" class="btn btn-secondary">
+                    <span>Discover Our Story</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE WEFI STORY -->
+    <section class="section" id="story">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">The WeFi Story</h2>
+                <p class="section-subtitle">How we're building the world's first decentralized on-chain bank</p>
+            </div>
+            
+            <div class="story-content fade-in-on-scroll">
+                <p class="story-text">
+                    In September 2024, a revolutionary idea became reality. WeFi launched as the world's first Deobank (Decentralized On-Chain Bank), fundamentally changing how people interact with money. Unlike traditional banks that control your funds or neobanks that simply digitize old systems, WeFi operates entirely on blockchain technology, giving you true ownership and control.
+                </p>
+                
+                <div class="story-highlight">
+                    <p>Our vision is simple yet powerful: Financial access is a fundamental human right. Everyone deserves the freedom to control their money, regardless of where they live or how wealthy they are.</p>
+                </div>
+                
+                <p class="story-text">
+                    At WeFi, we believe the outdated traditional banking model has failed billions of people. That's why we're building something better. A system that's inclusive, transparent, and built on the principles of decentralization. With advanced AI-driven compliance and Zero-Knowledge Proofs, we bring institutional-grade security while maintaining your privacy.
+                </p>
+                
+                <p class="story-text">
+                    Today, WeFi serves a global community with features like crypto-collateralized Visa cards, custodial and self-custody wallets, stablecoin management, global remittances, and AI-powered compliance. We're not just building a platform. We're creating a financial revolution that empowers 1.4 billion unbanked individuals worldwide.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEOBANK VS NEOBANK -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Deobanks Change Everything</h2>
+                <p class="section-subtitle">Understanding the evolution from traditional banks to true financial freedom</p>
+            </div>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card fade-in-on-scroll">
+                    <div class="comparison-icon">🏦</div>
+                    <h3 class="comparison-title">Traditional Banks</h3>
+                    <p class="comparison-description">
+                        Physical branches, bureaucracy, and limited access. Your money, their control.
+                    </p>
+                    <ul class="comparison-features">
+                        <li>Control your funds</li>
+                        <li>Limited hours and access</li>
+                        <li>High fees and restrictions</li>
+                        <li>Slow international transfers</li>
+                        <li>Excludes 1.4 billion people</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card fade-in-on-scroll">
+                    <div class="comparison-icon">📱</div>
+                    <h3 class="comparison-title">Neobanks</h3>
+                    <p class="comparison-description">
+                        Digital-only banks with modern interfaces but same old problems underneath.
+                    </p>
+                    <ul class="comparison-features">
+                        <li>Still depend on traditional banks</li>
+                        <li>Better UX, same control issues</li>
+                        <li>Can freeze your accounts</li>
+                        <li>Centralized infrastructure</li>
+                        <li>Limited to fiat currencies</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card fade-in-on-scroll">
+                    <div class="comparison-icon">🏛️⛓️</div>
+                    <h3 class="comparison-title">WeFi Deobank</h3>
+                    <p class="comparison-description">
+                        Fully decentralized, on-chain banking. True ownership. Real freedom.
+                    </p>
+                    <ul class="comparison-features">
+                        <li>YOU control your funds (self-custody)</li>
+                        <li>Transparent blockchain transactions</li>
+                        <li>Global access, no restrictions</li>
+                        <li>Instant borderless payments</li>
+                        <li>Earn yield through DeFi</li>
+                        <li>AI-powered compliance</li>
+                        <li>No account freezes or holds</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOUNDER & TEAM -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Led by Crypto Pioneers</h2>
+                <p class="section-subtitle">40+ specialists from Tether, Wise, Binance, Visa, and major financial institutions</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-card fade-in-on-scroll">
+                    <div class="team-image">
+                        <img src="https://www.deobankdefi.com/images/reeve-collins.png" 
+                             alt="Reeve Collins - WeFi Chairman and Tether Co-Founder" 
+                             width="120" 
+                             height="120" 
+                             loading="lazy"
+                             style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    </div>
+                    <h3 class="team-name">Reeve Collins</h3>
+                    <p class="team-role">Chairman & Board Member</p>
+                    <p class="team-bio">
+                        Founder and former CEO of Tether (USDT), the world's most-used stablecoin with $170+ billion market cap. Pioneer in bridging crypto and traditional finance.
+                    </p>
+                </div>
+                
+                <div class="team-card fade-in-on-scroll">
+                    <div class="team-image">
+                        <img src="https://www.deobankdefi.com/images/maksym-sakharov.png" 
+                             alt="Maksym Sakharov - WeFi Group CEO and Co-Founder" 
+                             width="120" 
+                             height="120" 
+                             loading="lazy"
+                             style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    </div>
+                    <h3 class="team-name">Maksym Sakharov</h3>
+                    <p class="team-role">Group CEO & Co-Founder</p>
+                    <p class="team-bio">
+                        Co-founder and former CEO of Exflow. 10+ years in finance and technology, 5+ years in crypto. Visionary leader driving WeFi's hybrid banking model.
+                    </p>
+                </div>
+                
+                <div class="team-card fade-in-on-scroll">
+                    <div class="team-image">
+                        <img src="https://www.deobankdefi.com/images/roman-rossov.png" 
+                             alt="Roman Rossov - WeFi Board Member and Former Wise Product Director" 
+                             width="120" 
+                             height="120" 
+                             loading="lazy"
+                             style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    </div>
+                    <h3 class="team-name">Roman Rossov</h3>
+                    <p class="team-role">Board Member</p>
+                    <p class="team-bio">
+                        Former Product Director at Wise, one of the world's leading fintech companies. Expert in global financial products and user experience.
+                    </p>
+                </div>
+                
+                <div class="team-card fade-in-on-scroll">
+                    <div class="team-image">
+                        <img src="https://www.deobankdefi.com/images/khaled-suleiman.png" 
+                             alt="Khaled Suleiman - WeFi Board Member and Former National Bank of Abu Dhabi CEO" 
+                             width="120" 
+                             height="120" 
+                             loading="lazy"
+                             style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    </div>
+                    <h3 class="team-name">Khaled Suleiman</h3>
+                    <p class="team-role">Board Member</p>
+                    <p class="team-bio">
+                        Former CEO at National Bank of Abu Dhabi. Decades of experience in traditional banking and financial regulation.
+                    </p>
+                </div>
+                
+                <div class="team-card fade-in-on-scroll">
+                    <div class="team-image">
+                        <img src="https://www.deobankdefi.com/images/yusuf-mirakhmedov.png" 
+                             alt="Yusuf Mirakhmedov - WeFi Board Member and Former Tradeleaf COO" 
+                             width="120" 
+                             height="120" 
+                             loading="lazy"
+                             style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    </div>
+                    <h3 class="team-name">Yusuf Mirakhmedov</h3>
+                    <p class="team-role">Board Member</p>
+                    <p class="team-bio">
+                        Former COO at Tradeleaf. Expert in operational excellence and scaling financial technology platforms.
+                    </p>
+                </div>
+                
+                <div class="team-card fade-in-on-scroll">
+                    <div class="team-image">💎</div>
+                    <h3 class="team-name">Elite Advisory Board</h3>
+                    <p class="team-role">Industry Veterans</p>
+                    <p class="team-bio">
+                        Includes former executives from Binance, Visa, Bitpanda, and other global financial leaders. Combined expertise spans decades.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION & VISION -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Mission & Vision</h2>
+                <p class="section-subtitle">Building the financial system the world deserves</p>
+            </div>
+            
+            <div class="mission-vision">
+                <div class="mission-card fade-in-on-scroll">
+                    <div class="mission-icon">🎯</div>
+                    <h3 class="mission-title">Our Mission</h3>
+                    <p class="mission-text">
+                        To reshape the outdated traditional banking model into a more inclusive, smart, and robust system by leveraging decentralized networks and the latest technological advances while ensuring regulatory compliance that adapts to both global standards and local requirements.
+                    </p>
+                </div>
+                
+                <div class="mission-card fade-in-on-scroll">
+                    <div class="mission-icon">🌍</div>
+                    <h3 class="mission-title">Our Vision</h3>
+                    <p class="mission-text">
+                        A future where everyone can assert their financial freedom through a secure, accessible, compliant, and fair financial system. No matter where you live or how wealthy you are, you deserve access to the global economy.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS & ACHIEVEMENTS -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">WeFi by the Numbers</h2>
+                <p class="section-subtitle">Real results from a revolutionary platform</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card fade-in-on-scroll">
+                    <div class="stat-number">1.4B</div>
+                    <div class="stat-label">Target Unbanked Users</div>
+                </div>
+                
+                <div class="stat-card fade-in-on-scroll">
+                    <div class="stat-number">140M+</div>
+                    <div class="stat-label">Merchants Accepting WeFi Card</div>
+                </div>
+                
+                <div class="stat-card fade-in-on-scroll">
+                    <div class="stat-number">35M+</div>
+                    <div class="stat-label">WFI Tokens Mined</div>
+                </div>
+                
+                <div class="stat-card fade-in-on-scroll">
+                    <div class="stat-number">40+</div>
+                    <div class="stat-label">Team Specialists</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY FEATURES -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What Makes WeFi Different</h2>
+                <p class="section-subtitle">Innovation meets practicality in every feature</p>
+            </div>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card fade-in-on-scroll">
+                    <div class="comparison-icon">🔐</div>
+                    <h3 class="comparison-title">Self-Custody Wallets</h3>
+                    <p class="comparison-description">
+                        Full control over your assets. Your keys, your crypto. No intermediaries, no account freezes.
+                    </p>
+                </div>
+                
+                <div class="comparison-card fade-in-on-scroll">
+                    <div class="comparison-icon">💳</div>
+                    <h3 class="comparison-title">Crypto Visa Cards</h3>
+                    <p class="comparison-description">
+                        Spend your crypto anywhere Visa is accepted. 140+ million merchants worldwide.
+                    </p>
+                </div>
+                
+                <div class="comparison-card fade-in-on-scroll">
+                    <div class="comparison-icon">🤖</div>
+                    <h3 class="comparison-title">AI-Powered Compliance</h3>
+                    <p class="comparison-description">
+                        Advanced AI nodes detect fraud and ensure regulatory compliance automatically and securely.
+                    </p>
+                </div>
+                
+                <div class="comparison-card fade-in-on-scroll">
+                    <div class="comparison-icon">🌐</div>
+                    <h3 class="comparison-title">Global Remittances</h3>
+                    <p class="comparison-description">
+                        Send money across borders instantly with minimal fees. No banks, no delays.
+                    </p>
+                </div>
+                
+                <div class="comparison-card fade-in-on-scroll">
+                    <div class="comparison-icon">💰</div>
+                    <h3 class="comparison-title">Staking & Yields</h3>
+                    <p class="comparison-description">
+                        Earn passive income through staking. Typical APY ranges from 5% to 18% on stablecoins.
+                    </p>
+                </div>
+                
+                <div class="comparison-card fade-in-on-scroll">
+                    <div class="comparison-icon">🔒</div>
+                    <h3 class="comparison-title">Zero-Knowledge Proofs</h3>
+                    <p class="comparison-description">
+                        Privacy-preserving verification technology. Prove who you are without revealing personal data.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MINI FAQ -->
+    <section class="section">
+        <div class="container">
+            <div class="mini-faq fade-in-on-scroll">
+                <h2 class="faq-title">Quick Answers</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Who founded WeFi and why should I trust them?
+                    </button>
+                    <div class="faq-answer">
+                        WeFi was founded by Reeve Collins, the co-founder and former CEO of Tether (USDT), the world's most-used stablecoin with over $170 billion in market cap. The team includes 40+ specialists from Tether, Wise, Binance, Visa, and major banking institutions. This isn't a startup experiment. It's a platform built by proven crypto and finance veterans with decades of combined experience.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How is WeFi different from traditional banks or neobanks?
+                    </button>
+                    <div class="faq-answer">
+                        Traditional banks and neobanks control your funds, can freeze your accounts, and operate on outdated centralized infrastructure. WeFi is the world's first Deobank, meaning you have full control through self-custody wallets. Every transaction happens on-chain with complete transparency. You can earn yield through DeFi, access global markets instantly, and never worry about account freezes or holds. We're not upgrading banking. We're reinventing it.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Is WeFi legally compliant and regulated?
+                    </button>
+                    <div class="faq-answer">
+                        Absolutely. WeFi uses advanced AI-driven compliance nodes that detect and prevent financial crimes like money laundering and fraud in real-time. We implement Zero-Knowledge Proofs for privacy-preserving verification and maintain regulatory compliance across multiple jurisdictions. Our team includes former executives from the National Bank of Abu Dhabi and other regulated financial institutions, ensuring we meet both global standards and local requirements.
+                    </div>
+                </div>
+
+                <div class="faq-cta">
+                    <a href="deobankdefi-faq.html" class="btn btn-secondary">
+                        <span>Get All Your Answers →</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section">
+        <div class="container">
+            <div class="story-content fade-in-on-scroll" style="text-align: center;">
+                <h2 class="section-title" style="margin-bottom: 25px;">Ready to Experience True Financial Freedom?</h2>
+                <p class="story-text" style="font-size: 20px; margin-bottom: 40px;">
+                    Join thousands of people who've already discovered the power of decentralized banking. Your financial revolution starts today.
+                </p>
+                <div class="cta-buttons">
+                    <a href="https://app.wechain.ai/register?ref=xn1nq150v0" class="btn btn-primary" target="_blank">
+                        <span>Start Earning with WeFi</span>
+                    </a>
+                    <a href="deobankdefi-wfi-token.html" class="btn btn-secondary">
+                        <span>Learn About WFI Token</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="website-clone-offer">
+                <p><strong>STOP Struggling. START Earning.</strong></p>
+                <p>Want a high-converting WeFi affiliate website like this? <a href="https://wa.me/27721714626" target="_blank">Contact Us to Clone This Website</a></p>
+            </div>
+            
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="deobankdefi-home.html">Home</a></li>
+                        <li><a href="deobankdefi-about-wefi.html">About WeFi</a></li>
+                        <li><a href="deobankdefi-wfi-token.html">WFI Token</a></li>
+                        <li><a href="deobankdefi-compensation.html">Compensation Plan</a></li>
+                        <li><a href="deobankdefi-faq.html">FAQ</a></li>
+                        <li><a href="deobankdefi-getting-started.html">Getting Started</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Official WeFi</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://www.wefi.co" target="_blank">WeFi Official Website</a></li>
+                        <li><a href="https://app.wechain.ai" target="_blank">Member Dashboard Login</a></li>
+                        <li><a href="https://new.salepoint.io/login" target="_blank">Affiliates Dashboard</a></li>
+                        <li><a href="https://wechain.ai" target="_blank">WeChain Blockchain</a></li>
+                        <li><a href="https://www.wefi.co/blog" target="_blank">WeFi Blog</a></li>
+                        <li><a href="https://www.youtube.com/@wefi.official" target="_blank">YouTube Channel</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Legal & Compliance</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://wechain.ai/files/terms_and_conditions.pdf" target="_blank">Terms & Conditions</a></li>
+                        <li><a href="https://wechain.ai/files/privacy_policy.pdf" target="_blank">Privacy Policy</a></li>
+                        <li><a href="https://wechain.ai/files/disclaimer.pdf" target="_blank">Disclaimer</a></li>
+                        <li><a href="https://wechain.ai/files/node_agreement.pdf" target="_blank">Node Agreement</a></li>
+                        <li><a href="https://wechain.ai/files/wfi_utlization_agreement.pdf" target="_blank">WFI Utilization</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Connect With Your Sponsor</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://wa.me/27721714626" target="_blank">WhatsApp</a></li>
+                        <li><a href="https://chat.whatsapp.com/K0oHN9gKBNTFnOo3QEkgWv?mode=hqrt2" target="_blank">WhatsApp Group</a></li>
+                        <li><a href="https://www.facebook.com/Musa.TheMTG" target="_blank">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Disclaimer -->
+            <div class="disclaimer">
+                <strong>Important Disclaimer:</strong> This information is not financial advice. Cryptocurrency investments carry risk. We encourage you to conduct your own research and consult with qualified financial advisors. The responsibility for any investment decisions rests solely with you. WeFi ITO units represent technology purchases, not securities. Past performance does not guarantee future results. All projections and potential earnings are estimates and not guarantees.
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> DeobankDeFi.com | Empowering Financial Freedom Through WeFi | All Rights Reserved</p>
+                <p style="margin-top: 10px; font-size: 12px;">Referral Code: xn1nq150v0 | Independent WeFi Affiliate</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top"></button>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set dynamic copyright year
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                });
+            });
+
+            // FAQ accordion
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // Close all other FAQs
+                    document.querySelectorAll('.faq-question').forEach(q => {
+                        q.classList.remove('active');
+                        q.nextElementSibling.classList.remove('active');
+                    });
+                    
+                    // Toggle current FAQ
+                    if (!isActive) {
+                        this.classList.add('active');
+                        answer.classList.add('active');
+                    }
+                });
+            });
+
+            // Scroll to top button
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+            
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Fade in animations on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-on-scroll').forEach(element => {
+                observer.observe(element);
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    
+                    // Skip if href is just '#' or if it has onclick handler
+                    if (!href || href === '#' || this.hasAttribute('onclick')) {
+                        return;
+                    }
+                    
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }); // End of DOMContentLoaded
+    </script>
+</body>
+  </html>
