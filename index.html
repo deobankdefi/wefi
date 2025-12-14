@@ -482,6 +482,46 @@
             font-weight: bold;
         }
         
+        /* Dynamic price styling */
+        .dynamic-price {
+            color: var(--lime-green);
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        
+        .dynamic-price.loading {
+            color: rgba(199, 241, 96, 0.5);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        .dynamic-price.error {
+            color: rgba(255, 100, 100, 0.8);
+        }
+        
+        .dynamic-price.updated {
+            animation: priceUpdate 0.5s ease-out;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes priceUpdate {
+            0% { 
+                transform: scale(1);
+                color: var(--lime-green);
+            }
+            50% { 
+                transform: scale(1.05);
+                color: var(--bright-green);
+            }
+            100% { 
+                transform: scale(1);
+                color: var(--lime-green);
+            }
+        }
+        
         .feature-cta {
             display: inline-block;
             color: var(--lime-green);
@@ -1588,8 +1628,8 @@
                         WFI has surged 1,460% from its All-Time Low. With a fixed supply of 1 billion tokens and only ~75 million in circulation, early adopters are positioned for massive gains.
                     </p>
                     <ul class="feature-bullets">
-                        <li>Current price: ~$2.37 USD</li>
-                        <li>All-Time High: $2.51 (Dec 2025)</li>
+                        <li>Current price: <span id="wfi-current-price" class="dynamic-price">Loading...</span></li>
+                        <li>All-Time High: <span id="wfi-ath-price" class="dynamic-price">Loading...</span></li>
                         <li>Listed on BitMart, BingX, PancakeSwap</li>
                     </ul>
                     <a href="#wfi-token" class="feature-cta">Deep Dive: WFI Tokenomics →</a>
@@ -2354,6 +2394,303 @@
                     }
                 });
             });
+            
+            // ===== DYNAMIC WFI PRICE SYSTEM =====
+            // Fetches live WFI token prices and updates ATH automatically
+            
+            const WFIPriceManager = {
+                // Configuration
+                config: {
+                    updateInterval: 5 * 60 * 1000, // Update every 5 minutes
+                    cacheExpiry: 3 * 60 * 1000, // Cache for 3 minutes
+                    retryAttempts: 3,
+                    retryDelay: 2000
+                },
+                
+                // Storage keys
+                storageKeys: {
+                    currentPrice: 'wfi_current_price',
+                    athPrice: 'wfi_ath_price',
+                    athDate: 'wfi_ath_date',
+                    lastUpdate: 'wfi_last_update'
+                },
+                
+                // DOM elements
+                elements: {
+                    currentPrice: document.getElementById('wfi-current-price'),
+                    athPrice: document.getElementById('wfi-ath-price')
+                },
+                
+                // Initialize the price manager
+                init: function() {
+                    console.log('🚀 Initializing WFI Price Manager...');
+                    
+                    // Load cached data first for instant display
+                    this.loadCachedPrices();
+                    
+                    // Fetch fresh data
+                    this.fetchPrices();
+                    
+                    // Set up automatic updates
+                    setInterval(() => {
+                        this.fetchPrices();
+                    }, this.config.updateInterval);
+                    
+                    console.log('✅ WFI Price Manager initialized - updates every 5 minutes');
+                },
+                
+                // Fetch prices from APIs
+                fetchPrices: async function(attempt = 1) {
+                    try {
+                        console.log(`📊 Fetching WFI prices (attempt ${attempt})...`);
+                        
+                        // Try primary source: CoinGecko
+                        let priceData = await this.fetchFromCoinGecko();
+                        
+                        // Fallback: Try CoinMarketCap if CoinGecko fails
+                        if (!priceData) {
+                            console.log('⚠️ CoinGecko failed, trying CoinMarketCap...');
+                            priceData = await this.fetchFromCoinMarketCap();
+                        }
+                        
+                        // Fallback: Try custom API if both fail
+                        if (!priceData) {
+                            console.log('⚠️ CoinMarketCap failed, trying custom API...');
+                            priceData = await this.fetchFromCustomAPI();
+                        }
+                        
+                        // If all sources failed and we haven't exceeded retry attempts
+                        if (!priceData && attempt < this.config.retryAttempts) {
+                            console.log(`🔄 Retrying in ${this.config.retryDelay/1000}s...`);
+                            setTimeout(() => {
+                                this.fetchPrices(attempt + 1);
+                            }, this.config.retryDelay);
+                            return;
+                        }
+                        
+                        // If we got data, update everything
+                        if (priceData) {
+                            this.updatePrices(priceData);
+                            this.cachePrices(priceData);
+                            console.log('✅ Prices updated:', priceData);
+                        } else {
+                            console.error('❌ All price sources failed');
+                            this.showError();
+                        }
+                        
+                    } catch (error) {
+                        console.error('❌ Error fetching prices:', error);
+                        
+                        if (attempt < this.config.retryAttempts) {
+                            setTimeout(() => {
+                                this.fetchPrices(attempt + 1);
+                            }, this.config.retryDelay);
+                        } else {
+                            this.showError();
+                        }
+                    }
+                },
+                
+                // Fetch from CoinGecko API
+                fetchFromCoinGecko: async function() {
+                    try {
+                        // NOTE: Replace 'wefi' with actual CoinGecko ID
+                        // Find your token ID at: https://www.coingecko.com/en/coins/your-token
+                        const response = await fetch(
+                            'https://api.coingecko.com/api/v3/coins/wefi?' +
+                            'localization=false&tickers=false&community_data=false&developer_data=false'
+                        );
+                        
+                        if (!response.ok) throw new Error('CoinGecko API error');
+                        
+                        const data = await response.json();
+                        if (data && data.market_data) {
+                            return {
+                                currentPrice: data.market_data.current_price.usd,
+                                ath: data.market_data.ath.usd,
+                                athDate: new Date(data.market_data.ath_date.usd).toLocaleDateString('en-US', {
+                                    month: 'short',
+                                    year: 'numeric'
+                                })
+                            };
+                        }
+                        return null;
+                    } catch (error) {
+                        console.warn('CoinGecko fetch failed:', error.message);
+                        return null;
+                    }
+                },
+                
+                // Fetch from CoinMarketCap API
+                fetchFromCoinMarketCap: async function() {
+                    try {
+                        // NOTE: Requires API key from https://coinmarketcap.com/api/
+                        // You'll need to set up a backend proxy to avoid exposing your API key
+                        
+                        // Example backend endpoint:
+                        // const response = await fetch('/api/wfi-price');
+                        // const data = await response.json();
+                        // return { currentPrice: data.price, ath: data.ath, athDate: data.athDate };
+                        
+                        console.warn('CoinMarketCap integration requires backend proxy with API key');
+                        return null;
+                    } catch (error) {
+                        console.warn('CoinMarketCap fetch failed:', error.message);
+                        return null;
+                    }
+                },
+                
+                // Fetch from custom API or blockchain
+                fetchFromCustomAPI: async function() {
+                    try {
+                        // OPTION 1: If you have your own backend API
+                        // const response = await fetch('https://api.yourwebsite.com/wfi-price');
+                        // const data = await response.json();
+                        // return { currentPrice: data.price, ath: data.ath, athDate: data.ath_date };
+                        
+                        // OPTION 2: Fallback to static values (last resort)
+                        console.warn('Using fallback static values - please configure API');
+                        return {
+                            currentPrice: 2.37,
+                            ath: 2.51,
+                            athDate: 'Dec 2025'
+                        };
+                    } catch (error) {
+                        console.warn('Custom API fetch failed:', error.message);
+                        return null;
+                    }
+                },
+                
+                // Update displayed prices
+                updatePrices: function(priceData) {
+                    if (!priceData) return;
+                    
+                    // Update current price
+                    if (this.elements.currentPrice && priceData.currentPrice) {
+                        const formatted = this.formatPrice(priceData.currentPrice);
+                        this.elements.currentPrice.textContent = formatted;
+                        this.elements.currentPrice.classList.remove('loading', 'error');
+                        this.elements.currentPrice.classList.add('updated');
+                        
+                        // Remove updated class after animation
+                        setTimeout(() => {
+                            this.elements.currentPrice.classList.remove('updated');
+                        }, 500);
+                    }
+                    
+                    // Update ATH
+                    if (this.elements.athPrice && priceData.ath) {
+                        const athFormatted = `$${priceData.ath.toFixed(2)} (${priceData.athDate})`;
+                        this.elements.athPrice.textContent = athFormatted;
+                        this.elements.athPrice.classList.remove('loading', 'error');
+                        this.elements.athPrice.classList.add('updated');
+                        
+                        setTimeout(() => {
+                            this.elements.athPrice.classList.remove('updated');
+                        }, 500);
+                    }
+                    
+                    // Check if we have a new ATH
+                    this.checkAndUpdateATH(priceData);
+                },
+                
+                // Check if current price is new ATH
+                checkAndUpdateATH: function(priceData) {
+                    const storedATH = localStorage.getItem(this.storageKeys.athPrice);
+                    const currentATH = storedATH ? parseFloat(storedATH) : priceData.ath;
+                    
+                    if (priceData.currentPrice > currentATH) {
+                        console.log('🎉 New All-Time High!', priceData.currentPrice);
+                        
+                        // Update ATH in storage
+                        localStorage.setItem(this.storageKeys.athPrice, priceData.currentPrice);
+                        localStorage.setItem(this.storageKeys.athDate, new Date().toLocaleDateString('en-US', {
+                            month: 'short',
+                            year: 'numeric'
+                        }));
+                        
+                        // Update display
+                        const newATH = new Date().toLocaleDateString('en-US', {
+                            month: 'short',
+                            year: 'numeric'
+                        });
+                        this.elements.athPrice.textContent = `$${priceData.currentPrice.toFixed(2)} (${newATH})`;
+                    }
+                },
+                
+                // Format price for display
+                formatPrice: function(price) {
+                    if (price >= 1) {
+                        return `~$${price.toFixed(2)} USD`;
+                    } else if (price >= 0.01) {
+                        return `~$${price.toFixed(4)} USD`;
+                    } else {
+                        return `~$${price.toFixed(6)} USD`;
+                    }
+                },
+                
+                // Cache prices in localStorage
+                cachePrices: function(priceData) {
+                    try {
+                        localStorage.setItem(this.storageKeys.currentPrice, priceData.currentPrice);
+                        localStorage.setItem(this.storageKeys.lastUpdate, Date.now());
+                        
+                        if (priceData.ath) {
+                            localStorage.setItem(this.storageKeys.athPrice, priceData.ath);
+                            localStorage.setItem(this.storageKeys.athDate, priceData.athDate);
+                        }
+                    } catch (error) {
+                        console.warn('Failed to cache prices:', error);
+                    }
+                },
+                
+                // Load cached prices
+                loadCachedPrices: function() {
+                    try {
+                        const lastUpdate = localStorage.getItem(this.storageKeys.lastUpdate);
+                        const cacheAge = Date.now() - (lastUpdate || 0);
+                        
+                        // Only use cache if it's fresh enough (3 minutes)
+                        if (cacheAge < this.config.cacheExpiry) {
+                            const currentPrice = localStorage.getItem(this.storageKeys.currentPrice);
+                            const athPrice = localStorage.getItem(this.storageKeys.athPrice);
+                            const athDate = localStorage.getItem(this.storageKeys.athDate);
+                            
+                            if (currentPrice && athPrice) {
+                                console.log('📦 Loading cached prices');
+                                this.updatePrices({
+                                    currentPrice: parseFloat(currentPrice),
+                                    ath: parseFloat(athPrice),
+                                    athDate: athDate || 'Dec 2025'
+                                });
+                            }
+                        }
+                    } catch (error) {
+                        console.warn('Failed to load cached prices:', error);
+                    }
+                },
+                
+                // Show error state
+                showError: function() {
+                    if (this.elements.currentPrice) {
+                        this.elements.currentPrice.textContent = '~$2.37 USD';
+                        this.elements.currentPrice.classList.remove('loading', 'updated');
+                        this.elements.currentPrice.classList.add('error');
+                    }
+                    
+                    if (this.elements.athPrice) {
+                        this.elements.athPrice.textContent = '$2.51 (Dec 2025)';
+                        this.elements.athPrice.classList.remove('loading', 'updated');
+                        this.elements.athPrice.classList.add('error');
+                    }
+                }
+            };
+            
+            // Initialize WFI Price Manager
+            if (WFIPriceManager.elements.currentPrice && WFIPriceManager.elements.athPrice) {
+                WFIPriceManager.init();
+            }
+            
         }); // End of DOMContentLoaded
     </script>
 </body>
