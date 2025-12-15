@@ -78,6 +78,7 @@
         
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
         
         body {
@@ -95,6 +96,18 @@
         * {
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Responsive media - prevent overflow */
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Prevent word overflow */
+        h1, h2, h3, h4, h5, h6, p {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
         
         /* ===== NAVIGATION ===== */
@@ -318,6 +331,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
         
         .section-header {
@@ -896,6 +910,7 @@
                 gap: 20px;
                 transition: left 0.3s ease;
                 border-top: 1px solid rgba(199, 241, 96, 0.2);
+                z-index: 999;
             }
             
             .nav-menu.active {
@@ -914,8 +929,8 @@
                 top: 50%;
                 transform: translateY(-50%);
                 right: 20px;
-                padding: 8px 20px;
-                font-size: 13px;
+                padding: 8px 16px;
+                font-size: 12px;
                 min-height: 36px;
             }
             
@@ -924,37 +939,374 @@
             }
             
             .hero {
-                padding: 120px 25px 60px;
+                padding: 100px 20px 60px;
+            }
+            
+            .hero-title {
+                font-size: clamp(30px, 7vw, 38px);
+                margin-bottom: 16px;
+            }
+            
+            .hero-description {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+            
+            .hero-badge {
+                padding: 10px 20px;
+                font-size: 12px;
+                margin-bottom: 20px;
+            }
+            
+            .cta-buttons {
+                flex-direction: row;
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+            
+            .btn {
+                width: auto;
+                flex: 1 1 auto;
+                min-width: 140px;
+                padding: 16px 20px;
+                font-size: 14px;
+                letter-spacing: 0.3px;
             }
             
             .section {
-                padding: 60px 25px;
-            }
-            
-            .story-content {
-                padding: 40px 30px;
-            }
-            
-            .mini-faq {
-                padding: 45px 25px;
-            }
-            
-            .footer {
-                padding: 45px 25px 25px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 36px;
+                padding: 60px 20px;
             }
             
             .section-title {
-                font-size: 32px;
+                font-size: clamp(28px, 6vw, 40px);
+            }
+            
+            .section-subtitle {
+                font-size: 15px;
+            }
+            
+            .story-content {
+                padding: 40px 25px;
+            }
+            
+            .story-text {
+                font-size: 16px;
+            }
+            
+            .story-highlight p {
+                font-size: 18px;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-card {
+                padding: 30px 25px;
+            }
+            
+            .comparison-title {
+                font-size: 22px;
             }
             
             .team-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .team-card {
+                padding: 30px 25px;
+            }
+            
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+            
+            .mission-card {
+                padding: 35px 30px;
+            }
+            
+            .mission-title {
+                font-size: 24px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mini-faq {
+                padding: 40px 20px;
+            }
+            
+            .faq-title {
+                font-size: 26px;
+            }
+            
+            .faq-question {
+                font-size: 16px;
+                padding: 12px 0;
+            }
+            
+            .footer {
+                padding: 40px 20px 20px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 24px;
+            }
+            
+            .nav-cta {
+                padding: 6px 12px;
+                font-size: 11px;
+                min-height: 32px;
+                right: 15px;
+            }
+            
+            .hero {
+                padding: 90px 15px 50px;
+            }
+            
+            .hero-title {
+                font-size: 28px;
+                line-height: 1.3;
+                letter-spacing: -0.3px;
+                word-spacing: 0.05em;
+                margin-bottom: 14px;
+            }
+            
+            .hero-badge {
+                padding: 8px 18px;
+                font-size: 11px;
+                margin-bottom: 18px;
+            }
+            
+            .hero-description {
+                font-size: 15px;
+                line-height: 1.6;
+                margin-bottom: 24px;
+            }
+            
+            .cta-buttons {
+                gap: 10px;
+            }
+            
+            .btn {
+                padding: 14px 16px;
+                font-size: 13px;
+                white-space: normal;
+                line-height: 1.3;
+                min-width: 120px;
+            }
+            
+            .section {
+                padding: 50px 15px;
+            }
+            
+            .section-title {
+                font-size: 26px;
+                margin-bottom: 12px;
+            }
+            
+            .section-subtitle {
+                font-size: 14px;
+            }
+            
+            .story-content {
+                padding: 30px 20px;
+                border-radius: 16px;
+            }
+            
+            .story-text {
+                font-size: 15px;
+                line-height: 1.7;
+            }
+            
+            .story-highlight {
+                padding: 20px 20px;
+                margin: 25px 0;
+            }
+            
+            .story-highlight p {
+                font-size: 16px;
+            }
+            
+            .comparison-card {
+                padding: 25px 20px;
+            }
+            
+            .comparison-icon {
+                font-size: 40px;
+            }
+            
+            .comparison-title {
+                font-size: 20px;
+            }
+            
+            .comparison-description {
+                font-size: 14px;
+            }
+            
+            .team-card {
+                padding: 25px 20px;
+            }
+            
+            .team-image {
+                width: 100px;
+                height: 100px;
+                font-size: 40px;
+            }
+            
+            .team-name {
+                font-size: 20px;
+            }
+            
+            .team-role {
+                font-size: 14px;
+            }
+            
+            .team-bio {
+                font-size: 13px;
+            }
+            
+            .mission-card {
+                padding: 30px 25px;
+            }
+            
+            .mission-icon {
+                font-size: 44px;
+            }
+            
+            .mission-title {
+                font-size: 22px;
+            }
+            
+            .mission-text {
+                font-size: 15px;
+            }
+            
+            .stat-card {
+                padding: 25px 20px;
+            }
+            
+            .stat-number {
+                font-size: 40px;
+            }
+            
+            .stat-label {
+                font-size: 14px;
+            }
+            
+            .mini-faq {
+                padding: 30px 15px;
+            }
+            
+            .faq-title {
+                font-size: 24px;
+                margin-bottom: 30px;
+            }
+            
+            .faq-question {
+                font-size: 15px;
+                padding: 10px 0;
+            }
+            
+            .faq-answer {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+            
+            .footer {
+                padding: 35px 15px 15px;
+            }
+            
+            .website-clone-offer {
+                padding: 20px;
+            }
+            
+            .website-clone-offer p {
+                font-size: 14px;
+            }
+            
+            .website-clone-offer a {
+                font-size: 15px;
+            }
+            
+            .footer-section h3 {
+                font-size: 16px;
+            }
+            
+            .footer-links a {
+                font-size: 14px;
+            }
+            
+            .disclaimer {
+                font-size: 12px;
+            }
+            
+            .footer-bottom {
+                font-size: 12px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .logo {
+                font-size: 22px;
+            }
+            
+            .nav-cta {
+                padding: 5px 10px;
+                font-size: 10px;
+                min-height: 30px;
+                right: 12px;
+            }
+            
+            .mobile-menu-btn {
+                padding: 8px;
+            }
+            
+            .mobile-menu-btn span {
+                width: 22px;
+                height: 2px;
+            }
+            
+            .hero {
+                padding: 85px 12px 45px;
+            }
+            
+            .hero-title {
+                font-size: 24px;
+            }
+            
+            .hero-badge {
+                padding: 7px 16px;
+                font-size: 10px;
+            }
+            
+            .hero-description {
+                font-size: 14px;
+            }
+            
+            .btn {
+                padding: 12px 14px;
+                font-size: 12px;
+                min-width: 110px;
+            }
+            
+            .section {
+                padding: 45px 12px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .container {
+                padding: 0 12px;
             }
         }
         
