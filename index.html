@@ -17,10 +17,10 @@
     <!-- Favicon -->
     <link rel="icon" href="https://www.deobankdefi.com/images/favicon.png">
     
-    <!-- Google Fonts - Inter -->
+    <!-- Google Fonts - Inter & Space Grotesk -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Vimeo Player API - Pre-loaded for reliability -->
     <script src="https://player.vimeo.com/api/player.js" async></script>
@@ -118,6 +118,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
         
         .logo {
@@ -128,6 +129,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-family: "Space Grotesk", sans-serif;
         }
         
         .nav-menu {
@@ -165,6 +167,34 @@
             width: 100%;
         }
         
+        /* Navigation CTA Button */
+        .nav-cta {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            background: linear-gradient(135deg, var(--lime-green), var(--bright-green));
+            color: var(--black);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(199, 241, 96, 0.3);
+            white-space: nowrap;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(199, 241, 96, 0.5);
+        }
+        
+        .nav-cta:active {
+            transform: translateY(0);
+        }
+        
         /* Mobile Menu */
         .mobile-menu-btn {
             display: none;
@@ -190,8 +220,15 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            padding: 120px 40px 60px;
+            padding: 70px 40px 60px;
             background: linear-gradient(135deg, #000000 0%, #0A0A0A 50%, #1A1A1A 100%);
+        }
+        
+        /* Reduced top padding on larger screens (desktops/laptops) */
+        @media (min-width: 1024px) {
+            .hero {
+                padding: 50px 40px 60px;
+            }
         }
         
         .hero::before {
@@ -220,6 +257,21 @@
             z-index: 10;
         }
         
+        /* HERO BADGE - World's First Deobank */
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(199, 241, 96, 0.1), rgba(0, 255, 136, 0.1));
+            border: 1px solid rgba(199, 241, 96, 0.3);
+            border-radius: 50px;
+            padding: 10px 25px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #FFFFFF;
+            letter-spacing: 0.5px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
         .hero-title {
             font-size: clamp(40px, 8vw, 80px);
             font-weight: 900;
@@ -227,6 +279,7 @@
             margin-bottom: 24px;
             letter-spacing: -1px;
             word-spacing: 0.1em;
+            font-family: "Space Grotesk", sans-serif;
             animation: fadeInUp 0.8s ease-out;
         }
         
@@ -278,26 +331,24 @@
         }
         
         .btn {
+            display: inline-block;
             padding: 18px 40px;
-            font-size: 16px;
-            font-weight: 700;
+            border-radius: 50px;
             text-decoration: none;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             border: none;
-            font-family: var(--font-primary);
+            cursor: pointer;
             letter-spacing: 0.5px;
             position: relative;
             overflow: hidden;
             white-space: nowrap;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            display: inline-block;
+            font-family: var(--font-primary);
             text-align: center;
         }
         
+        /* Ripple effect on click */
         .btn::before {
             content: '';
             position: absolute;
@@ -306,14 +357,35 @@
             width: 0;
             height: 0;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.3);
             transform: translate(-50%, -50%);
-            transition: width 0.5s, height 0.5s;
+            transition: width 0.6s ease, height 0.6s ease;
+            pointer-events: none;
         }
         
-        .btn:hover::before {
-            width: 300px;
-            height: 300px;
+        .btn:active::before {
+            width: 400px;
+            height: 400px;
+        }
+        
+        /* Shimmer effect */
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -100%;
+            width: 50%;
+            height: 200%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.1) 50%, 
+                transparent 100%);
+            transform: skewX(-25deg);
+            transition: left 0.8s ease;
+        }
+        
+        .btn:hover::after {
+            left: 200%;
         }
         
         .btn span {
@@ -324,12 +396,16 @@
         .btn-primary {
             background: linear-gradient(135deg, var(--lime-green), var(--bright-green));
             color: var(--black);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+            box-shadow: 0 10px 30px rgba(199, 241, 96, 0.3);
         }
         
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.4);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(199, 241, 96, 0.5);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(-1px) scale(0.98);
         }
         
         .btn-secondary {
@@ -340,7 +416,12 @@
         
         .btn-secondary:hover {
             background: rgba(199, 241, 96, 0.1);
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(199, 241, 96, 0.2);
+        }
+        
+        .btn-secondary:active {
+            transform: translateY(-1px) scale(0.98);
         }
         
         /* ===== SECTIONS ===== */
@@ -367,6 +448,7 @@
             letter-spacing: -0.8px;
             line-height: 1.2;
             word-spacing: 0.05em;
+            font-family: "Space Grotesk", sans-serif;
         }
         
         .section-title .highlight {
@@ -454,6 +536,7 @@
             margin-bottom: 12px;
             color: var(--lime-light);
             line-height: 1.3;
+            font-family: "Space Grotesk", sans-serif;
         }
         
         .feature-description {
@@ -599,6 +682,7 @@
             font-weight: 700;
             margin-bottom: 40px;
             color: var(--lime-light);
+            font-family: "Space Grotesk", sans-serif;
         }
         
         .faq-item {
@@ -762,6 +846,7 @@
             font-weight: 700;
             margin-bottom: 20px;
             color: var(--lime-green);
+            font-family: "Space Grotesk", sans-serif;
         }
         
         .footer-links {
@@ -829,12 +914,18 @@
         
         /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 1024px) {
+            .nav-cta {
+                padding: 9px 20px;
+                font-size: 13px;
+                min-height: 40px;
+            }
+            
             .section {
                 padding: 80px 30px;
             }
             
             .hero {
-                padding: 100px 30px 50px;
+                padding: 55px 30px 50px;
             }
             
             .hero-title {
@@ -868,6 +959,19 @@
             
             .mobile-menu-btn {
                 display: flex;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .nav-cta {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 20px;
+                padding: 8px 20px;
+                font-size: 13px;
+                min-height: 36px;
             }
             
             .nav-container {
@@ -875,7 +979,7 @@
             }
             
             .hero {
-                padding: 100px 20px 40px;
+                padding: 55px 20px 40px;
             }
             
             .hero-title {
@@ -897,12 +1001,15 @@
             }
             
             .hero-cta {
-                flex-direction: column;
-                gap: 15px;
+                flex-direction: row;
+                gap: 12px;
+                flex-wrap: wrap;
             }
             
             .btn {
-                width: 100%;
+                width: auto;
+                flex: 1 1 auto;
+                min-width: 140px;
                 padding: 16px 20px;
                 font-size: 14px;
                 letter-spacing: 0.3px;
@@ -976,6 +1083,11 @@
                 white-space: normal;
                 line-height: 1.3;
                 letter-spacing: 0.2px;
+                min-width: 120px;
+            }
+            
+            .hero-cta {
+                gap: 10px;
             }
             
             .section-title {
@@ -992,6 +1104,37 @@
             
             .logo {
                 font-size: 24px;
+            }
+            
+            .nav-cta {
+                right: 16px;
+                padding: 6px 16px;
+                font-size: 12px;
+                min-height: 32px;
+            }
+        }
+        
+        /* Ultra-small screens (360px and below) */
+        @media (max-width: 360px) {
+            .nav-cta {
+                right: 12px;
+                padding: 5px 12px;
+                font-size: 11px;
+                min-height: 30px;
+            }
+            
+            .logo {
+                font-size: 22px;
+            }
+            
+            .btn {
+                padding: 12px 14px;
+                font-size: 12px;
+                min-width: 110px;
+            }
+            
+            .hero-cta {
+                gap: 8px;
             }
         }
         
@@ -1496,10 +1639,10 @@
         <div class="nav-container">
             <div class="logo">DeobankDeFi</div>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="about-wefi.html" class="nav-link">About WeFi</a></li>
                 <li><a href="wfi-token.html" class="nav-link">WFI Token</a></li>
-                <li><a href="compensation.html" class="nav-link">Compensation</a></li>
+                <li><a href="compensation.html" class="nav-link">Comp Plan</a></li>
+                <li><a href="testimonials.html" class="nav-link">Testimonials</a></li>
                 <li><a href="faq.html" class="nav-link">FAQ</a></li>
                 <li><a href="getting-started.html" class="nav-link">Getting Started</a></li>
             </ul>
@@ -1508,27 +1651,26 @@
                 <span></span>
                 <span></span>
             </div>
+            <a href="https://app.wechain.ai/register?ref=xn1nq150v0" class="nav-cta" target="_blank">Sign Up</a>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
     <section id="home" class="hero">
         <div class="hero-container">
+            <div class="hero-badge">🏆 WORLD'S FIRST DEOBANK</div>
             <h1 class="hero-title">
                 Your Gateway to <span class="highlight">Financial Freedom</span> Through DeFi
             </h1>
-            <h2 class="hero-subtitle">
-                The World's First Deobank Where Banking Meets Blockchain
-            </h2>
             <p class="hero-description">
                 Tired of broken promises and failed opportunities? WeFi delivers what others only dream about: real passive income, real banking services, and real wealth-building potential. Join the revolution that's redefining finance.
             </p>
             <div class="hero-cta">
                 <a href="https://app.wechain.ai/register?ref=xn1nq150v0" class="btn btn-primary" target="_blank">
-                    <span>Start Earning Now →</span>
+                    <span>Sign Up →</span>
                 </a>
                 <a href="https://app.wechain.ai" class="btn btn-secondary" target="_blank">
-                    <span>Sign In</span>
+                    <span>Sign In →</span>
                 </a>
             </div>
         </div>
