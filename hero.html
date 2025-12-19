@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join the world's first Deobank revolution. WeFi combines traditional banking with DeFi innovation. Earn passive income, build generational wealth, and take control of your financial future.">
+    <meta name="keywords" content="WeFi, deobank, DeFi, crypto banking, passive income, WFI token, financial freedom, decentralized banking">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="DeobankDeFi - Your Gateway to the WeFi Revolution">
+    <meta property="og:description" content="The world's first Deobank. Earn 18% APR on stablecoins while building generational wealth through WeFi.">
+    <meta property="og:image" content="https://www.deobankdefi.com/images/favicon.png">
+    <meta property="og:url" content="https://www.deobankdefi.com">
+    
+    <title>DeobankDeFi - The Future of Banking Starts Here | WeFi Deobank</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://www.deobankdefi.com/images/favicon.png">
+    
+    <!-- Google Fonts - Inter & Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===== CSS VARIABLES - WeFi Branding ===== */
+        :root {
+            /* Primary Colors - From wefideobank.co */
+            --lime-light: #D4EF89;
+            --lime-green: #C7F160;
+            --bright-green: #00FF88;
+            --spotify-green: #1ED760;
+            --neon-green: #39FF14;
+            
+            /* Dark Backgrounds */
+            --black: #000000;
+            --near-black: #0A0A0A;
+            --dark-charcoal: #1A1A1A;
+            --very-dark-gray: #1B1B1B;
+            --deep-space: #0D0D1A;
+            
+            /* Accent Colors - Enhanced */
+            --cyan: #00D9FF;
+            --electric-blue: #00F0FF;
+            --purple-accent: #A855F7;
+            --violet: #8B5CF6;
+            
+            /* Utility Colors */
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --gray: #808080;
+            --medium-gray: #4A4A4A;
+            
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
+            
+            /* Spacing */
+            --navbar-height: 68px;
+            --section-padding: clamp(60px, 10vh, 120px);
+            --container-padding: clamp(20px, 5vw, 80px);
+        }
+        
+        /* ===== GLOBAL RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* ===== NAVIGATION BAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 239, 137, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 255, 136, 0.1);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px var(--container-padding);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: clamp(24px, 4vw, 28px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--lime-green), var(--bright-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: var(--font-display);
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: clamp(20px, 3vw, 40px);
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--lime-green);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--lime-green);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .cta-button {
+            padding: 12px 28px;
+            background: linear-gradient(135deg, var(--lime-green), var(--bright-green));
+            color: var(--black);
+            font-weight: 700;
+            font-size: 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(199, 241, 96, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(199, 241, 96, 0.5);
+        }
+        
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--lime-green);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        /* ===== HERO SECTION - MASTERPIECE ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: calc(var(--navbar-height) + 40px);
+            padding-bottom: 60px;
+            overflow: hidden;
+        }
+        
+        /* Futuristic Background - WeChain Style Amplified 10x */
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            background: linear-gradient(180deg, 
+                var(--deep-space) 0%, 
+                #0a0e1a 25%,
+                #050810 50%,
+                var(--black) 100%
+            );
+        }
+        
+        /* Animated Gradient Orbs */
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--lime-green) 0%, transparent 70%);
+            top: -300px;
+            right: -200px;
+            animation-delay: 0s;
+        }
+        
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--cyan) 0%, transparent 70%);
+            bottom: -200px;
+            left: -150px;
+            animation-delay: 7s;
+        }
+        
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--purple-accent) 0%, transparent 70%);
+            top: 30%;
+            left: 20%;
+            animation-delay: 14s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(50px, -80px) scale(1.1);
+            }
+            66% {
+                transform: translate(-30px, 50px) scale(0.9);
+            }
+        }
+        
+        /* Geometric Grid Pattern */
+        .grid-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(199, 241, 96, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(199, 241, 96, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.4;
+        }
+        
+        /* Particle Effect Overlay */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.3), transparent),
+                radial-gradient(2px 2px at 60% 70%, rgba(199, 241, 96, 0.3), transparent),
+                radial-gradient(1px 1px at 50% 50%, rgba(0, 217, 255, 0.3), transparent),
+                radial-gradient(2px 2px at 80% 10%, rgba(168, 85, 247, 0.3), transparent);
+            background-size: 200px 200px, 180px 180px, 220px 220px, 190px 190px;
+            background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+            animation: particleShift 60s linear infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes particleShift {
+            0% {
+                background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+            }
+            100% {
+                background-position: 200px 200px, 240px 260px, 330px 470px, 270px 300px;
+            }
+        }
+        
+        /* Hero Container */
+        .hero-container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+            width: 100%;
+        }
+        
+        /* Top Badge */
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, rgba(199, 241, 96, 0.15), rgba(0, 255, 136, 0.15));
+            border: 1px solid rgba(199, 241, 96, 0.3);
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--lime-green);
+            margin-bottom: 40px;
+            animation: badgePulse 3s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(199, 241, 96, 0.2);
+        }
+        
+        @keyframes badgePulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(199, 241, 96, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(199, 241, 96, 0.4);
+            }
+        }
+        
+        /* Two Column Layout */
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(40px, 8vw, 100px);
+            align-items: center;
+        }
+        
+        /* Left Column - Content */
+        .hero-left {
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-heading {
+            font-size: clamp(42px, 6vw, 68px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            font-family: var(--font-display);
+            background: linear-gradient(135deg, var(--white) 0%, var(--lime-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1.5px;
+        }
+        
+        .hero-subheading {
+            font-size: clamp(20px, 3vw, 26px);
+            font-weight: 600;
+            color: var(--lime-green);
+            margin-bottom: 28px;
+            line-height: 1.4;
+        }
+        
+        .hero-benefits {
+            list-style: none;
+            margin-bottom: 36px;
+        }
+        
+        .hero-benefits li {
+            font-size: clamp(17px, 2.5vw, 20px);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 16px;
+            padding-left: 32px;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        .hero-benefits li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--bright-green);
+            font-weight: 900;
+            font-size: 22px;
+        }
+        
+        .hero-closing {
+            font-size: clamp(18px, 2.5vw, 22px);
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 40px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        
+        .hero-cta {
+            display: inline-block;
+            padding: 18px 48px;
+            background: linear-gradient(135deg, var(--lime-green) 0%, var(--bright-green) 100%);
+            color: var(--black);
+            font-weight: 800;
+            font-size: clamp(16px, 2vw, 18px);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            box-shadow: 0 8px 30px rgba(199, 241, 96, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .hero-cta:hover::before {
+            left: 100%;
+        }
+        
+        .hero-cta:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(199, 241, 96, 0.6);
+        }
+        
+        /* Right Column - Phone Mockup */
+        .hero-right {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInRight 1.2s ease-out;
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .phone-mockup {
+            position: relative;
+            width: clamp(280px, 40vw, 400px);
+            height: auto;
+            animation: floatPhone 6s ease-in-out infinite;
+        }
+        
+        @keyframes floatPhone {
+            0%, 100% {
+                transform: translateY(0) rotate(-3deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(-3deg);
+            }
+        }
+        
+        .phone-frame {
+            position: relative;
+            width: 100%;
+            padding-bottom: 205%;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 50px;
+            box-shadow: 
+                0 0 0 12px rgba(255, 255, 255, 0.05),
+                0 0 0 14px rgba(0, 0, 0, 0.8),
+                0 30px 80px rgba(0, 0, 0, 0.6),
+                0 0 100px rgba(199, 241, 96, 0.2);
+            overflow: hidden;
+        }
+        
+        /* Phone Notch */
+        .phone-notch {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 30px;
+            background: #000;
+            border-radius: 0 0 20px 20px;
+            z-index: 20;
+        }
+        
+        /* Phone Screen */
+        .phone-screen {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            background: #000;
+            border-radius: 38px;
+            overflow: hidden;
+        }
+        
+        .phone-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Glow Effect Around Phone */
+        .phone-glow {
+            position: absolute;
+            top: -20%;
+            left: -20%;
+            right: -20%;
+            bottom: -20%;
+            background: radial-gradient(circle, rgba(199, 241, 96, 0.3) 0%, transparent 70%);
+            z-index: -1;
+            animation: glowPulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.1);
+            }
+        }
+        
+        /* ===== TRUST SIGNALS SECTION ===== */
+        .trust-signals {
+            position: relative;
+            z-index: 10;
+            margin-top: clamp(60px, 10vh, 100px);
+            padding: 0 var(--container-padding);
+        }
+        
+        .trust-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .trust-label {
+            font-size: clamp(14px, 2vw, 16px);
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        
+        .trust-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: clamp(30px, 5vw, 60px);
+            flex-wrap: wrap;
+        }
+        
+        .trust-logo {
+            height: clamp(30px, 4vw, 50px);
+            width: auto;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            filter: grayscale(100%);
+        }
+        
+        .trust-logo:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+        
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .hero-left {
+                text-align: center;
+            }
+            
+            .hero-benefits li {
+                text-align: left;
+            }
+            
+            .phone-mockup {
+                max-width: 350px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: var(--navbar-height);
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.98);
+                flex-direction: column;
+                padding: 30px;
+                gap: 20px;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                border-top: 1px solid rgba(199, 241, 96, 0.2);
+            }
+            
+            .nav-menu.active {
+                transform: translateX(0);
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+            
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+            
+            .hero {
+                min-height: auto;
+                padding-top: calc(var(--navbar-height) + 20px);
+            }
+            
+            .hero-badge {
+                margin-bottom: 30px;
+            }
+            
+            .phone-mockup {
+                max-width: 280px;
+            }
+            
+            .trust-logos {
+                gap: 25px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 15px 20px;
+            }
+            
+            .hero-container {
+                padding: 0 20px;
+            }
+            
+            .hero-heading {
+                font-size: 36px;
+            }
+            
+            .hero-subheading {
+                font-size: 18px;
+            }
+            
+            .hero-benefits li {
+                font-size: 16px;
+            }
+            
+            .hero-closing {
+                font-size: 17px;
+            }
+            
+            .hero-cta {
+                width: 100%;
+                text-align: center;
+                padding: 16px 32px;
+            }
+            
+            .phone-mockup {
+                max-width: 240px;
+            }
+            
+            .trust-signals {
+                margin-top: 40px;
+            }
+            
+            .trust-logo {
+                height: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="https://www.deobankdefi.com" class="logo">DeobankDeFi</a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                <li><a href="#tokenomics" class="nav-link">Tokenomics</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="https://app.wefideobank.co/signup" class="cta-button">Sign Up</a></li>
+            </ul>
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Futuristic Background -->
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+            <div class="grid-pattern"></div>
+            <div class="particles"></div>
+        </div>
+        
+        <div class="hero-container">
+            <!-- Top Badge -->
+            <div class="hero-badge">WORLD'S FIRST DEOBANK</div>
+            
+            <!-- Two Column Content -->
+            <div class="hero-content">
+                <!-- Left Column: Content -->
+                <div class="hero-left">
+                    <h1 class="hero-heading">Tired of broken promises and failed opportunities?</h1>
+                    
+                    <p class="hero-subheading">WeFi delivers what others only dream about:</p>
+                    
+                    <ul class="hero-benefits">
+                        <li>Real passive income</li>
+                        <li>Real banking services, and</li>
+                        <li>Real wealth-building potential.</li>
+                    </ul>
+                    
+                    <p class="hero-closing">Join the revolution that's redefining finance.</p>
+                    
+                    <a href="https://app.wefideobank.co/signup" class="hero-cta">Start Earning Now</a>
+                </div>
+                
+                <!-- Right Column: Phone Mockup -->
+                <div class="hero-right">
+                    <div class="phone-mockup">
+                        <div class="phone-glow"></div>
+                        <div class="phone-frame">
+                            <div class="phone-notch"></div>
+                            <div class="phone-screen">
+                                <video 
+                                    class="phone-video" 
+                                    autoplay 
+                                    muted 
+                                    loop 
+                                    playsinline
+                                    poster="https://www.deobankdefi.com/images/video-poster.jpg">
+                                    <source src="https://www.deobankdefi.com/videos/wefi-app.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Trust Signals -->
+            <div class="trust-signals">
+                <!-- Industry Trust -->
+                <div class="trust-section">
+                    <div class="trust-label">Trusted by industry</div>
+                    <div class="trust-logos">
+                        <img src="http://deobankdefi.com/images/block.png" alt="Blockchain Industry" class="trust-logo">
+                        <img src="http://deobankdefi.com/images/visa.png" alt="Visa" class="trust-logo">
+                        <img src="http://deobankdefi.com/images/inno.png" alt="Innovation Partners" class="trust-logo">
+                    </div>
+                </div>
+                
+                <!-- Media Endorsement -->
+                <div class="trust-section">
+                    <div class="trust-label">What they say about WeFi</div>
+                    <div class="trust-logos">
+                        <img src="http://deobankdefi.com/images/cointelegraph.png" alt="Cointelegraph" class="trust-logo">
+                        <img src="http://deobankdefi.com/images/entrepreneur.png" alt="Entrepreneur" class="trust-logo">
+                        <img src="http://deobankdefi.com/images/nasdaq.png" alt="Nasdaq" class="trust-logo">
+                        <img src="http://deobankdefi.com/images/forbes.png" alt="Forbes" class="trust-logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking nav link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+        
+        // Video Error Handling
+        const video = document.querySelector('.phone-video');
+        
+        video.addEventListener('error', (e) => {
+            console.error('Video failed to load:', e);
+            // Fallback: You can add a poster image or alternative content
+        });
+        
+        // Ensure video plays on mobile
+        video.addEventListener('loadedmetadata', () => {
+            video.play().catch(error => {
+                console.log('Autoplay prevented:', error);
+                // On mobile, autoplay might be prevented
+                // The video will still be visible and playable by user
+            });
+        });
+        
+        // Performance Optimization: Pause video when not in viewport
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    video.play().catch(e => console.log('Play prevented:', e));
+                } else {
+                    video.pause();
+                }
+            });
+        }, observerOptions);
+        
+        videoObserver.observe(video);
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add animation on scroll for trust signals
+        const trustSections = document.querySelectorAll('.trust-section');
+        
+        const trustObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+        
+        trustSections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.8s ease-out';
+            trustObserver.observe(section);
+        });
+        
+        // Prevent scroll jank
+        let ticking = false;
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+    </script>
+</body>
+</html>
